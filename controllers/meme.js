@@ -48,35 +48,7 @@ module.exports.showMemes = async (req, res) => {
     res.render("memes/show", { meme: newMeme });
 }
 
-//render edit form
-module.exports.renderEditForm = async (req, res) => {
-    const { id } = req.params;
-    const meme = await Meme.findById(id);
-    if (!meme) {
-        req.flash('error', 'Cannot find that campground!');
-        return res.redirect('/memes');
-    }
-    res.render('memes/edit', { meme });
-}
 
-//edit and update individual meme page 
-module.exports.updateMemes = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const { path, filename } = req.file;
-
-        console.log("the request body is", req.body);
-        const meme = await Meme.findByIdAndUpdate(id, { ...req.body.meme });
-        meme.image = { url: path, filename }
-        console.log("the updated meme is ", meme);
-        req.flash('success', 'Successfully updated meme!');
-        res.redirect(`/memes/${meme._id}`);
-    } catch (e) {
-        console.log("Error trying to update", e);
-    }
-
-
-}
 //delete individual meme page
 module.exports.deleteMemes = async (req, res) => {
     const { id } = req.params;

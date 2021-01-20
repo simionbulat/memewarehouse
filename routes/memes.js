@@ -27,10 +27,8 @@ router.get('/new', memes.renderNewForm)
 router.route('/:id')
     .get(catchAsync(memes.showMemes))
     //validateMeme as a middlwware to be implemented as well as isAuthor, isLoggedIn
-    .put(upload.single('image'), catchAsync(memes.updateMemes))
     .delete(catchAsync(memes.deleteMemes));
 
-router.get('/:id/edit', catchAsync(memes.renderEditForm))
 
 
 module.exports = router;
