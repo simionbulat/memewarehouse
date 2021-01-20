@@ -1,0 +1,50 @@
+<% layout('layouts/boilerplate')%>
+    <div class="container  d-flex " id="content">
+        <div class=" col-md-2 d-inline-block mx-3 p-2  d-flex flex-column">
+            <h1>New here?</h1>
+            <p>This is where we get the info
+            </p>
+        </div>
+        <div class=" col-md-6 d-inline-block mx-3 align-items-center p-1">
+            <% for (let meme of memes){%>
+                <div class="col-12 pb-3">
+                    <div class="container-fluid px-0 ">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <img class="img-fluid" src="<%=meme.image.url %>" alt="">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href='/memes/<%=meme._id%>'>
+                                    <%= meme.title%>
+                                </a>
+                            </h5>
+                            <p class="card-text">
+                                <%= meme.description%>
+                            </p>
+                        </div>
+
+                        <div class="card-footer text-muted">
+                            2 days ago
+                        </div>
+                    </div>
+
+                </div>
+                <% }%>
+
+
+
+        </div>
+        <div class=" col-md-2 d-inline-block mx-3  p-2  d-flex flex-column">
+            <h1>This is the index page</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ratione eligendi
+                laudantium, vero blanditiis ad commodi unde ex rem magni! Sapiente, quidem eum perspiciatis explicabo
+                consequatur vitae architecto repudiandae!
+            </p>
+        </div>
+    </div>

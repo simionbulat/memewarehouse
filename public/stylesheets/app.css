@@ -1,0 +1,15 @@
+.borderTest{
+    border:1px solid #ccc;
+}
+
+
+#content {
+    min-width: 860px;
+    max-width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.noresize {
+    resize: none;
+ }
