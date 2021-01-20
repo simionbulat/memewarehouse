@@ -16,7 +16,9 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const memeRoutes = require("./routes/memes");
 const commentsRoutes = require("./routes/comments");
+const userRoutes = require("./routes/users");
 const bodyParser = require("body-parser");
+const User = require("./models/user")
 
 const MongoDBStore = require("connect-mongo")(session);
 
@@ -130,12 +132,12 @@ app.use(
         },
     })
 );
-// app.use(passport.initialize());
-// app.use(passport.session());
-// passport.use(new LocalStrategy(User.authenticate()));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
 
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 
@@ -148,6 +150,7 @@ app.use((req, res, next) => {
 })
 
 //==============App Routes Setul======
+app.use('/', userRoutes);
 app.use("/memes", memeRoutes);
 app.use('/memes/:id/comments', commentsRoutes);
 

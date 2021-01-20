@@ -20,7 +20,15 @@ const seedDB = async () => {
     const meme = await Meme.deleteMany({});
 
     for (let i = 0; i < 10; i++) {
-        const newMeme = new Meme({ title: "Meme Test", description: "Aici este descriptionu pt meme", image: { url: "https://res.cloudinary.com/decb6hftv/image/upload/v1610997692/MemeWarehouse/zobfjftxuj6wcwufgmvd.jpg", filename: 'MemeWarehouse/zobfjftxuj6wcwufgmvd' } })
+        const newMeme = new Meme({
+            title: "Meme Test",
+            description: "Aici este descriptionu pt meme",
+            image:
+            {
+                url: "https://res.cloudinary.com/decb6hftv/image/upload/v1610997692/MemeWarehouse/zobfjftxuj6wcwufgmvd.jpg",
+                filename: 'MemeWarehouse/zobfjftxuj6wcwufgmvd'
+            }
+        })
         await newMeme.save();
     }
 
