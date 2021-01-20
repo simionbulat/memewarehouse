@@ -1,0 +1,318 @@
+# Query: review
+# ContextLines: 1
+
+161 results - 20 files
+
+MemeWarehouse/controllers/comments.js:
+  16  module.exports.deleteComment = async (req, res) => {
+  17:     const { id, commentId } = req.params;
+  18      await Meme.findByIdAndUpdate(id, { $pull: { comments: commentId } });
+
+MemeWarehouse/views/memes/show.ejs:
+  38              <h2>Leave a Comment</h2>
+  39:             <form action="/memes/<%=meme._id%>/comments" method="POST" class="mb-3 validated-form" novalidate>
+  40                  <!-- <div class="mb-3">
+  41                      <label class="form-label" for="rating">Rating</label>
+  42:                     <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
+  43                  </div> -->
+
+  63  
+  64:                         <form action="/memes/<%=meme._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+  65                              <button class="btn btn-sm btn-danger">Delete</button>
+
+yelp/v1/app.js:
+  21  const campgroundRoutes = require("./routes/campgrounds");
+  22: const reviewRoutes = require("./routes/reviews");
+  23  const userRoutes = require("./routes/users");
+
+  87  app.use("/campgrounds", campgroundRoutes);
+  88: app.use("/campgrounds/:id/reviews", reviewRoutes);
+  89  app.use("/", userRoutes);
+
+yelp/v1/middleware.js:
+   1  const Campground = require("./models/campground");
+   2: const Review = require("./models/review");
+   3: const { campgroundSchema, reviewSchema } = require("./schemas");
+   4  const ExpressError = require("./utils/ExpressError");
+
+  30  
+  31: module.exports.isReviewAuthor = async (req, res, next) => {
+  32:     const { id, reviewId } = req.params;
+  33:     const review = await Review.findById(reviewId);
+  34  
+  35  
+  36:     if (!review.author.equals(req.user._id)) {
+  37          req.flash("error", "You don't have permission to do that");
+
+  56  
+  57: module.exports.validateReview = (req, res, next) => {
+  58:     const { error } = reviewSchema.validate(req.body);
+  59      if (error) {
+
+yelp/v1/schemas.js:
+  13  
+  14: module.exports.reviewSchema = Joi.object({
+  15:     review: Joi.object({
+  16          rating: Joi.number().required(),
+
+yelp/v1/controllers/campgrounds.js:
+  36      const campground = await Campground.findById(req.params.id).populate({
+  37:         path: 'reviews',
+  38          populate: {
+
+yelp/v1/controllers/reviews.js:
+   1  const Campground = require('../models/campground');
+   2: const Review = require('../models/review');
+   3  
+   4: module.exports.createReview = async (req, res) => {
+   5      const campground = await Campground.findById(req.params.id);
+   6:     const review = new Review(req.body.review);
+   7:     review.author = req.user._id;
+   8:     campground.reviews.push(review);
+   9:     await review.save();
+  10      await campground.save();
+  11:     req.flash('success', 'Created new review!');
+  12      res.redirect(`/campgrounds/${campground._id}`);
+
+  14  
+  15: module.exports.deleteReview = async (req, res) => {
+  16:     const { id, reviewId } = req.params;
+  17:     await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+  18:     await Review.findByIdAndDelete(reviewId);
+  19:     req.flash('success', 'Successfully deleted review')
+  20      res.redirect(`/campgrounds/${id}`);
+
+yelp/v1/models/campground.js:
+   2  const Schema = mongoose.Schema;
+   3: const Review = require("../models/review");
+   4  
+
+  30      },
+  31:     reviews: [
+  32          {
+  33              type: Schema.Types.ObjectId,
+  34:             ref: "Review"
+  35          }
+
+  45      if (doc) {
+  46:         await Review.deleteMany({
+  47              _id:
+  48              {
+  49:                 $in: doc.reviews
+  50              }
+
+yelp/v1/models/review.js:
+   3  
+   4: const reviewSchema = new Schema({
+   5      rating: Number,
+
+  12  
+  13: module.exports = mongoose.model("Review", reviewSchema);
+
+yelp/v1/routes/reviews.js:
+   2  const router = express.Router({ mergeParams: true });
+   3: const { validateReview, isLoggedIn, isReviewAuthor } = require('../middleware');
+   4  const Campground = require('../models/campground');
+   5: const Review = require('../models/review');
+   6: const reviews = require('../controllers/reviews');
+   7  const ExpressError = require('../utils/ExpressError');
+
+   9  
+  10: router.post('/', isLoggedIn, validateReview, catchAsync(reviews.createReview))
+  11  
+  12: router.delete('/:reviewId', isLoggedIn, isReviewAuthor, catchAsync(reviews.deleteReview))
+  13  
+
+yelp/v1/views/campgrounds/show.ejs:
+   61              <% if (currentUser){ %>
+   62:                 <h2>Leave a Review</h2>
+   63:                 <form action="/campgrounds/<%=campground._id %>/reviews " method="POST" class="mb-3 validated-form"
+   64                      novalidate>
+
+   66                          <label class="form-label" for="rating">Rating</label>
+   67:                         <input type="range" name="review[rating]" id="rating" min="1" max="5" class="form-range">
+   68                      </div> -->
+
+   71  
+   72:                         <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+   73                          <label for="first-rate1" title="Terrible">1 star</label>
+   74:                         <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+   75                          <label for="first-rate2" title="Not good">2 stars</label>
+   76:                         <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+   77                          <label for="first-rate3" title="Average">3 stars</label>
+   78:                         <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+   79                          <label for="first-rate4" title="Very good">4 stars</label>
+   80:                         <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+   81                          <label for="first-rate5" title="Amazing">5 stars</label>
+
+   83                      <div class="mb-3">
+   84:                         <label class="form-label" for="body">Review</label>
+   85:                         <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3"
+   86                              required></textarea>
+
+   92                  <% } %>
+   93:                     <% for (let review of campground.reviews){ %>
+   94                          <div class="card mb-3">
+
+   96                                  <h5>
+   97:                                     <%=review.author.username %>
+   98                                  </h5>
+   99:                                 <h3 class=" starability-result card-title" data-rating="<%=review.rating%>">
+  100:                                     Rated <%= review.rating %> stars
+  101                                  </h3>
+
+  104                                  <p>
+  105:                                     <%=review.body %>
+  106                                  </p>
+  107:                                 <% if (currentUser && review.author.equals(currentUser._id)) { %>
+  108                                      <form
+  109:                                         action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE"
+  110                                          method="POST">
+
+YelpCamp/app.js:
+   19  const campgroundRoutes = require('./routes/campgrounds');
+   20: const reviewRoutes = require('./routes/reviews');
+   21  
+
+  144  app.use('/campgrounds', campgroundRoutes)
+  145: app.use('/campgrounds/:id/reviews', reviewRoutes)
+  146  
+
+YelpCamp/middleware.js:
+   1: const { campgroundSchema, reviewSchema } = require('./schemas.js');
+   2  const ExpressError = require('./utils/ExpressError');
+   3  const Campground = require('./models/campground');
+   4: const Review = require('./models/review');
+   5  
+
+  35  
+  36: module.exports.isReviewAuthor = async (req, res, next) => {
+  37:     const { id, reviewId } = req.params;
+  38:     const review = await Review.findById(reviewId);
+  39:     if (!review.author.equals(req.user._id)) {
+  40          req.flash('error', 'You do not have permission to do that!');
+
+  45  
+  46: module.exports.validateReview = (req, res, next) => {
+  47:     const { error } = reviewSchema.validate(req.body);
+  48      if (error) {
+
+YelpCamp/schemas.js:
+  35  
+  36: module.exports.reviewSchema = Joi.object({
+  37:     review: Joi.object({
+  38          rating: Joi.number().required().min(1).max(5),
+
+YelpCamp/controllers/campgrounds.js:
+  33      const campground = await Campground.findById(req.params.id).populate({
+  34:         path: 'reviews',
+  35          populate: {
+
+YelpCamp/controllers/reviews.js:
+   1  const Campground = require('../models/campground');
+   2: const Review = require('../models/review');
+   3  
+   4: module.exports.createReview = async (req, res) => {
+   5      const campground = await Campground.findById(req.params.id);
+   6:     const review = new Review(req.body.review);
+   7:     review.author = req.user._id;
+   8:     campground.reviews.push(review);
+   9:     await review.save();
+  10      await campground.save();
+  11:     req.flash('success', 'Created new review!');
+  12      res.redirect(`/campgrounds/${campground._id}`);
+
+  14  
+  15: module.exports.deleteReview = async (req, res) => {
+  16:     const { id, reviewId } = req.params;
+  17:     await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+  18:     await Review.findByIdAndDelete(reviewId);
+  19:     req.flash('success', 'Successfully deleted review')
+  20      res.redirect(`/campgrounds/${id}`);
+
+YelpCamp/models/campground.js:
+   1  const mongoose = require('mongoose');
+   2: const Review = require('./review')
+   3  const Schema = mongoose.Schema;
+
+  39      },
+  40:     reviews: [
+  41          {
+  42              type: Schema.Types.ObjectId,
+  43:             ref: 'Review'
+  44          }
+
+  58      if (doc) {
+  59:         await Review.deleteMany({
+  60              _id: {
+  61:                 $in: doc.reviews
+  62              }
+
+YelpCamp/models/review.js:
+   3  
+   4: const reviewSchema = new Schema({
+   5      body: String,
+
+  12  
+  13: module.exports = mongoose.model("Review", reviewSchema);
+  14  
+
+YelpCamp/routes/reviews.js:
+   2  const router = express.Router({ mergeParams: true });
+   3: const { validateReview, isLoggedIn, isReviewAuthor } = require('../middleware');
+   4  const Campground = require('../models/campground');
+   5: const Review = require('../models/review');
+   6: const reviews = require('../controllers/reviews');
+   7  const ExpressError = require('../utils/ExpressError');
+
+   9  
+  10: router.post('/', isLoggedIn, validateReview, catchAsync(reviews.createReview))
+  11  
+  12: router.delete('/:reviewId', isLoggedIn, isReviewAuthor, catchAsync(reviews.deleteReview))
+  13  
+
+YelpCamp/views/campgrounds/show.ejs:
+   60              <% if(currentUser){ %>
+   61:                 <h2>Leave a Review</h2>
+   62:                 <form action="/campgrounds/<%=campground._id%>/reviews" method="POST" class="mb-3 validated-form"
+   63                      novalidate>
+
+   65                  <label class="form-label" for="rating">Rating</label>
+   66:                 <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
+   67              </div> -->
+   68                      <fieldset class="starability-basic">
+   69:                         <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
+   70                              aria-label="No rating." />
+   71:                         <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+   72                          <label for="first-rate1" title="Terrible">1 star</label>
+   73:                         <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+   74                          <label for="first-rate2" title="Not good">2 stars</label>
+   75:                         <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+   76                          <label for="first-rate3" title="Average">3 stars</label>
+   77:                         <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+   78                          <label for="first-rate4" title="Very good">4 stars</label>
+   79:                         <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+   80                          <label for="first-rate5" title="Amazing">5 stars</label>
+
+   82                      <div class="mb-3">
+   83:                         <label class="form-label" for="body">Review Text</label>
+   84:                         <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3"
+   85                              required></textarea>
+
+   92                  <% } %>
+   93:                     <% for(let review of campground.reviews) { %>
+   94                          <div class="card mb-3 ">
+
+   96                                  <h5 class="card-title">
+   97:                                     <%= review.author.username%>
+   98                                  </h5>
+   99:                                 <p class="starability-result" data-rating="<%=review.rating%>">
+  100:                                     Rated: <%= review.rating %> stars
+  101                                  </p>
+  102:                                 <!-- <h6 class="card-subtitle mb-2 text-muted">By <%= review.author.username%></h6> -->
+  103:                                 <p class="card-text">Review: <%= review.body %>
+  104                                  </p>
+  105:                                 <% if( currentUser && review.author.equals(currentUser._id)) {%>
+  106                                      <form
+  107:                                         action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE"
+  108                                          method="POST">

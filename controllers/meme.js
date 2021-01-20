@@ -39,7 +39,7 @@ module.exports.createMemes = async (req, res) => {
 //show individual memes page 
 module.exports.showMemes = async (req, res) => {
     const { id } = req.params;
-    const newMeme = await Meme.findById(id);
+    const newMeme = await Meme.findById(id).populate("comments");
     if (!newMeme) {
         req.flash("error", "Cannot find that ting done(meme)");
         return res.redirect("/memes");

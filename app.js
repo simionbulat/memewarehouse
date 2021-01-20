@@ -14,7 +14,8 @@ const ExpressError = require('./utils/ExpressError');
 const flash = require('connect-flash');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
-const memeRoutes = require("./routes/memes")
+const memeRoutes = require("./routes/memes");
+const commentsRoutes = require("./routes/comments");
 const bodyParser = require("body-parser");
 
 const MongoDBStore = require("connect-mongo")(session);
@@ -148,6 +149,7 @@ app.use((req, res, next) => {
 
 //==============App Routes Setul======
 app.use("/memes", memeRoutes);
+app.use('/memes/:id/comments', commentsRoutes);
 
 
 // app.get('/new', (req, res) => {

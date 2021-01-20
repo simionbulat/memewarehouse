@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Comment = require("./comment")
 
 const ImageSchema = new Schema({
     url: String,
@@ -22,21 +23,27 @@ const MemeSchema = new Schema({
     //author
 
     //comments
+    comments: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Comment"
+        }
+    ]
 });
 
 
 
 //====remove associated comments
 
-// memeSchema.post('findOneAndDelete', async function (doc) {
-//     if (doc) {
-//         await Comment.deleteMany({
-//             _id: {
-//                 $in: doc.reviews
-//             }
-//         })
-//     }
-// })
+MemeSchema.post('findOneAndDelete', async function (doc) {
+    if (doc) {
+        await Comment.deleteMany({
+            _id: {
+                $in: doc.comments
+            }
+        })
+    }
+})
 
 
 
