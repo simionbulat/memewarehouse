@@ -16,12 +16,15 @@ ImageSchema.virtual('thumbnail').get(function () {
 
 const opts = { toJSON: { virtuals: true } };
 
-const MemeSchema = new Schema({
+const memeSchema = new Schema({
     title: String,
     image: ImageSchema,
     description: String,
     //author
-
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    },
     //comments
     comments: [
         {
@@ -35,7 +38,7 @@ const MemeSchema = new Schema({
 
 //====remove associated comments
 
-MemeSchema.post('findOneAndDelete', async function (doc) {
+memeSchema.post('findOneAndDelete', async function (doc) {
     if (doc) {
         await Comment.deleteMany({
             _id: {
@@ -47,4 +50,4 @@ MemeSchema.post('findOneAndDelete', async function (doc) {
 
 
 
-module.exports = mongoose.model('Meme', MemeSchema);
+module.exports = mongoose.model('Meme', memeSchema);
