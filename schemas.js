@@ -33,7 +33,7 @@ module.exports.memeSchema = Joi.object({
 
 module.exports.commentSchema = Joi.object({
     comment: Joi.object({
-        likes: Joi.number().required().min(0),
+        likes: Joi.number(),
         body: Joi.string().required().escapeHTML()
     }).required()
 })

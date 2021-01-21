@@ -40,7 +40,13 @@ module.exports.createMemes = async (req, res) => {
 //show individual memes page 
 module.exports.showMemes = async (req, res) => {
     const { id } = req.params;
-    const newMeme = await Meme.findById(id).populate("comments");
+    const newMeme = await Meme.findById(id).populate({
+        path: 'comments',
+        // Get friends of friends - populate the 'friends' array for every friend
+        populate: { path: 'author' }
+    })
+        .populate('author');
+
 
     if (!newMeme) {
         req.flash("error", "Cannot find that ting done(meme)");

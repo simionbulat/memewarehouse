@@ -9,6 +9,7 @@ const { isLoggedIn, isCommentAuthor, validateComment } = require("../middleware"
 router.post('/', isLoggedIn, validateComment, catchAsync(comments.createComment))
 
 router.delete('/:commentId', isLoggedIn, isCommentAuthor, catchAsync(comments.deleteComment))
+// router.delete('/:commentId', isLoggedIn, isCommentAuthor, (req, res) => { res.send("sal cai bine") })
 
 module.exports = router;
 
