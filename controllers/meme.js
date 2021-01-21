@@ -21,6 +21,7 @@ module.exports.createMemes = async (req, res) => {
         const newMeme = new Meme(req.body.meme);
         const { path, filename } = req.file;
         newMeme.image = { url: path, filename }
+        newMeme.author = req.user._id;
         await newMeme.save();
 
         req.flash("success", "Succesfully created a piece of history!");
@@ -40,6 +41,7 @@ module.exports.createMemes = async (req, res) => {
 module.exports.showMemes = async (req, res) => {
     const { id } = req.params;
     const newMeme = await Meme.findById(id).populate("comments");
+
     if (!newMeme) {
         req.flash("error", "Cannot find that ting done(meme)");
         return res.redirect("/memes");

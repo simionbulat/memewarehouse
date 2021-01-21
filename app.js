@@ -155,9 +155,7 @@ app.use("/memes", memeRoutes);
 app.use('/memes/:id/comments', commentsRoutes);
 
 
-// app.get('/new', (req, res) => {
-//     res.render('memes/new')
-// });
+
 //==============starting page=========
 app.get("/", (req, res) => {
     res.render("home")

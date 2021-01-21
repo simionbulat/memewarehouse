@@ -17,7 +17,7 @@ const { isSchema } = require('joi');
 router.route('/')
 
     .get(catchAsync(memes.index))
-    .post(isLoggedIn, validateMeme, upload.single('image'), catchAsync(memes.createMemes))
+    .post(isLoggedIn, upload.single('image'), catchAsync(memes.createMemes))
 
 
 router.get('/new', isLoggedIn, memes.renderNewForm)

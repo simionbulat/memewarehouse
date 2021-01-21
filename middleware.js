@@ -19,6 +19,7 @@ module.exports.validateMeme = (req, res, next) => {
     if (error) {
         const errorMsg = error.details.map(el => el.message).join(',')
         throw new ExpressError(errorMsg, 400)
+
     } else {
         next();
     }

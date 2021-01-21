@@ -5,6 +5,8 @@ module.exports.createComment = async (req, res) => {
     const { id } = req.params;
     const meme = await Meme.findById(id);
     const comment = new Comment(req.body.comment);
+    comment.author = req.user._id;
+    comment.likes = 0;
 
     meme.comments.push(comment);
     await comment.save();
