@@ -17,6 +17,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const memeRoutes = require("./routes/memes");
 const commentsRoutes = require("./routes/comments");
 const userRoutes = require("./routes/users");
+const resetPasswordRoutes = require('./routes/resetPassword');
 const bodyParser = require("body-parser");
 const User = require("./models/user")
 
@@ -151,6 +152,7 @@ app.use((req, res, next) => {
 
 //==============App Routes Setul======
 app.use('/', userRoutes);
+app.use('/', resetPasswordRoutes);
 app.use("/memes", memeRoutes);
 app.use('/memes/:id/comments', commentsRoutes);
 
