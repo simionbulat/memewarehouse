@@ -22,8 +22,11 @@ const memeSchema = new Schema({
     description: String,
     //author
     author: {
-        type: Schema.Types.ObjectId,
-        ref: "User"
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+        username: String
     },
     //comments
     comments: [

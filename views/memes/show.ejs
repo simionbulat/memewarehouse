@@ -24,7 +24,8 @@
                 <div class="card-footer text-muted">
                     2 days ago
                 </div>
-                <% if( currentUser && meme.author.equals(currentUser._id)) {%>
+
+                <% if(currentUser && meme.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
                     <div>
 
                         <form class="d-inline" action="/memes/<%=meme._id%>?_method=DELETE" method="POST">
@@ -66,6 +67,7 @@
                                     by <%= comment.author.username %></br>
                                         <%= comment.body %>
                                 </p>
+
                                 <% if( currentUser && meme.author.equals(currentUser._id)) {%>
                                     <form action="/memes/<%=meme._id%>/comments/<%=comment._id%>?_method=DELETE"
                                         method="POST">

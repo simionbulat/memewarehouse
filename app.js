@@ -47,7 +47,6 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 
-
 app.use(express.urlencoded({
     extended: true
 }));
@@ -159,6 +158,10 @@ app.use('/memes/:id/comments', commentsRoutes);
 
 
 //==============starting page=========
+app.get("/users", (req, res) => {
+    res.render("users/user")
+})
+
 app.get("/", (req, res) => {
     res.render("home")
 })

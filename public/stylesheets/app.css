@@ -13,3 +13,33 @@
 .noresize {
     resize: none;
  }
+
+ .test{
+     background-color: #F8F8F8;
+    
+    box-shadow: #DCDCDC;
+     
+ }
+
+ #profilePic{
+     width: 200px;
+     height:auto;
+ }
+
+ #content-side-left{
+     float: left;
+     margin-right: 20px;
+ }
+
+ 
+ #content-side-right{
+     float: right;
+     margin-left: 20px;
+ }
+
+#content-side-center{
+    width: 600px;
+}
+.box{
+    padding:4px;
+}

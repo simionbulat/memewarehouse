@@ -30,8 +30,13 @@ module.exports.validateMeme = (req, res, next) => {
 
 module.exports.isAuthor = async (req, res, next) => {
     const { id } = req.params;
+    const author = {
+        id: req.params.id,
+        username: req.params.username
+    }
     const meme = await Meme.findById(id);
-    if (!meme.author.equals(req.user._id)) {
+
+    if (!meme.author.id.equals(req.user._id)) {
         req.flash('error', 'You do not have permission to do that!');
         return res.redirect(`/memes/${id}`);
     }

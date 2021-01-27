@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Meme = require('../models/meme');
 
 module.exports.renderRegister = (req, res) => {
     res.render("users/register")
@@ -37,4 +38,26 @@ module.exports.logout = (req, res) => {
     req.flash("success", "Goodbye");
     res.redirect("/memes");
 }
+
+module.exports.showUser = function (req, res) {
+    User.findById(req.params.id, function (err, foundUser) {
+        if (err) {
+            req.flash("error", "Something went wrong.");
+            res.redirect("/");
+        }
+        const foundMeme = Meme.find().where('author.id').equals(foundUser._id).exec(function (err, memes) {
+            if (err) {
+                req.flash("error", "Something went wrong.");
+                res.redirect("/");
+            }
+            res.render("users/user", { user: foundUser, memes: memes });
+
+        }
+        )
+
+    })
+}
+
+
+
 

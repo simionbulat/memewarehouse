@@ -18,10 +18,14 @@ module.exports.renderNewForm = (req, res) => {
 module.exports.createMemes = async (req, res) => {
 
     try {
+        const author = {
+            id: req.user.id,
+            username: req.user.username
+        }
         const newMeme = new Meme(req.body.meme);
         const { path, filename } = req.file;
         newMeme.image = { url: path, filename }
-        newMeme.author = req.user._id;
+        newMeme.author = author;
         await newMeme.save();
 
         req.flash("success", "Succesfully created a piece of history!");
@@ -45,7 +49,7 @@ module.exports.showMemes = async (req, res) => {
         // Get friends of friends - populate the 'friends' array for every friend
         populate: { path: 'author' }
     })
-        .populate('author');
+
 
 
     if (!newMeme) {
@@ -53,7 +57,9 @@ module.exports.showMemes = async (req, res) => {
         return res.redirect("/memes");
     }
     console.log(newMeme);
+
     res.render("memes/show", { meme: newMeme });
+
 }
 
 

@@ -19,4 +19,11 @@ router.route("/login")
 
 router.get("/logout", users.logout)
 
+
+
+
+router.get("/users/:id", users.showUser);
+
+
+
 module.exports = router;
