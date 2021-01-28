@@ -163,7 +163,7 @@ app.get("/users", (req, res) => {
 })
 
 app.get("/", (req, res) => {
-    res.render("home")
+    res.redirect("/memes")
 })
 
 //=============Catching all pages======

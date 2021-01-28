@@ -1,11 +1,35 @@
 <% layout('layouts/boilerplate')%>
+    <div id='mainPicture'>
+        <img src="https://res.cloudinary.com/decb6hftv/image/upload/v1611857999/MemeWarehouse/uurg8ldihxsswqurqlgw.jpg"
+            class="img-fluid" alt="Responsive image" id="mainPictureIndex">
+    </div>
+
+
     <div class="container  d-flex " id="content">
-        <div class=" col-md-2 d-inline-block mx-3 p-2  d-flex flex-column">
+        <div class=" col-md-2 d-inline-block mx-3 p-2  d-flex flex-column box content-side-left">
             <h1>New here?</h1>
             <p>This is where we get the info
             </p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, labore sint explicabo libero cupiditate
+                saepe nihil quisquam sit hic totam incidunt dolore nobis voluptas natus aspernatur maxime similique, est
+                maiores!
+                Ipsa, asperiores? Consectetur nam facilis ab sunt corrupti repudiandae deserunt a, dignissimos natus
+                nesciunt assumenda explicabo reprehenderit optio necessitatibus ea voluptas cumque animi minima aliquam
+                architecto! Odio ducimus sapiente laboriosam!
+                Esse perspiciatis fugit sequi ad earum dolor doloribus nam quae sapiente ipsam, tempora sint dolores
+                voluptatibus inventore mollitia praesentium neque voluptas totam consequatur reprehenderit sed quo
+                distinctio laboriosam? Consequuntur, illo.
+
+                Dolorem quaerat ea ipsa, est ratione soluta fugit facere blanditiis perspiciatis ducimus dicta
+                repudiandae error amet sequi placeat cupiditate doloremque fuga. Adipisci ducimus eaque quia velit.
+                Itaque dicta quaerat animi.
+                Molestiae sed quisquam repellendus vero obcaecati quis aperiam voluptatum repudiandae dolores quo
+                commodi, quidem inventore vitae aliquid magni quod dignissimos itaque natus ut modi quaerat ducimus
+                optio autem? Hic, similique!</p>
         </div>
-        <div class=" col-md-6 d-inline-block mx-3 align-items-center p-1">
+
+
+        <div class=" col-md-6 d-inline-block mx-3 align-items-center px-2 content-side-center">
             <% for (let meme of memes){%>
                 <div class="col-12 pb-3">
                     <div class="container-fluid px-0 ">
@@ -40,7 +64,7 @@
 
 
         </div>
-        <div class=" col-md-2 d-inline-block mx-3  p-2  d-flex flex-column">
+        <div class=" col-md-2 d-inline-block mx-3  p-2  d-flex flex-column content-side-right box ">
             <h1>This is the index page</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ratione eligendi
                 laudantium, vero blanditiis ad commodi unde ex rem magni! Sapiente, quidem eum perspiciatis explicabo

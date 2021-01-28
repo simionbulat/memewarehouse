@@ -68,7 +68,8 @@
                                         <%= comment.body %>
                                 </p>
 
-                                <% if( currentUser && meme.author.equals(currentUser._id)) {%>
+                                <% if(currentUser && meme.author.id.equals(currentUser._id) || currentUser &&
+                                    currentUser.isAdmin){ %>
                                     <form action="/memes/<%=meme._id%>/comments/<%=comment._id%>?_method=DELETE"
                                         method="POST">
                                         <button class="btn btn-sm btn-danger">Delete</button>

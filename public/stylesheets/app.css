@@ -21,25 +21,41 @@
      
  }
 
- #profilePic{
+#profilePic{
      width: 200px;
      height:auto;
  }
 
- #content-side-left{
+ .content-side-left{
      float: left;
      margin-right: 20px;
  }
 
  
- #content-side-right{
+.content-side-right{
      float: right;
      margin-left: 20px;
  }
 
-#content-side-center{
+.content-side-center{
     width: 600px;
 }
 .box{
-    padding:4px;
+border:1px solid red;
+}
+
+#mainPicture{
+
+    width: 100% \9;
+    
+    z-index: 0;
+    margin-bottom:1.5em;
+    object-fit: fill;
+}
+
+#mainPictureIndex{
+    width:100%;
+    z-index:0;
+    height:20rem;
+    
 }
