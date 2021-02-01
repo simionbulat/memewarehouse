@@ -29,33 +29,23 @@
  .content-side-left{
      float: left;
      margin-right: 20px;
+     height:35em;
  }
 
  
 .content-side-right{
      float: right;
      margin-left: 20px;
+     height:35em;
  }
 
 .content-side-center{
     width: 600px;
+    
 }
 .box{
-border:1px solid red;
-}
-
-#mainPicture{
-
-    width: 100% \9;
-    
-    z-index: 0;
-    margin-bottom:1.5em;
-    object-fit: fill;
-}
-
-#mainPictureIndex{
-    width:100%;
-    z-index:0;
-    height:20rem;
+    padding: .5rem 1rem;
+    background-color: rgba(0,0,0,.03);
     
 }
+
