@@ -1,15 +1,11 @@
 <% layout('layouts/boilerplate')%>
-    <div>
-        <img src="https://res.cloudinary.com/decb6hftv/image/upload/v1611777630/MemeWarehouse/go9mbjmkbwqsnucik6gu.jpg"
-            alt="" class="img-fluid">
-    </div>
 
     <div class="container  d-flex pt-1 align-self-start justify-content-md-center flex-wrap" id="content">
         <div class=" col-md-2 d-inline-block mx-auto  d-flex flex-column box content-side-left  order-1">
             <h1>New here?</h1>
             <p>This is where we get the info
             </p>
-            <p>Check out or <a href="/hot">Most viewed memes</a>from the inventory. Hot for the taking !</p>
+            <p>Check out or <a href="/hot"> Most viewed memes</a> from the inventory. Hot for the taking !</p>
         </div>
 
 
@@ -22,7 +18,6 @@
                                 <img class="img-fluid" src="<%=meme.image.url %>" alt="">
                             </div>
                         </div>
-
                     </div>
 
                     <div class="card mb-3">
@@ -33,7 +28,7 @@
                                 </a>
                             </h5>
                             <p class="card-text">
-                                <%= meme.description%>
+                                <%= meme.description %>
                             </p>
                         </div>
 

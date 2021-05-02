@@ -47,7 +47,7 @@ module.exports.isAuthor = async (req, res, next) => {
 module.exports.isCommentAuthor = async (req, res, next) => {
     const { id, commentId } = req.params;
     const comment = await Comment.findById(commentId);
-    console.log("commentu gasit este", comment)
+
     if (!comment.author.equals(req.user._id)) {
         req.flash('error', 'You do not have permission to do that!');
         return res.redirect(`/memes/${id}`);

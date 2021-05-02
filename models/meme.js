@@ -28,6 +28,10 @@ const memeSchema = new Schema({
         },
         username: String
     },
+    points: {
+        type: Number,
+        default: 0
+    },
     //comments
     comments: [
         {

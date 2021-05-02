@@ -13,6 +13,10 @@ const UserSchema = new Schema({
         required: true,
         unique: true
     },
+    reputationPoints: {
+        type: Number,
+        default: 0
+    },
     resetPasswordToken: String,
     resetPasswordExpires: Date,
     isAdmin: { type: Boolean, default: false }
