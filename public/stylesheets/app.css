@@ -84,3 +84,16 @@
     list-style: none;
     padding-left:0;
 }
+
+#scroll-to-top{
+    margin:auto;
+    align-self: flex-end;
+    position: fixed;
+    bottom: 60px;
+    right:60px;
+    background-color:white;
+    border: 1px solid #c5c8cb;
+}
+#scroll-to-top:hover{
+    background-color: wheat;
+}
