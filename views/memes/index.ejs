@@ -1,17 +1,39 @@
 <% layout('layouts/boilerplate')%>
 
-    <div class="container  d-flex pt-1 align-self-start justify-content-md-center flex-wrap" id="content">
-        <div class=" col-md-2 d-inline-block mx-auto  d-flex flex-column box content-side-left  order-1">
-            <h1>New here?</h1>
-            <p>This is where we get the info
-            </p>
-            <p>Check out or <a href="/hot"> Most viewed memes</a> from the inventory. Hot for the taking !</p>
+    <div id="main-container">
+        <div id="content-side-left">
+            <div class="box content-side">
+                <div class="title">
+                    New here?
+                </div>
+                <div class="text-content">
+                    <p>Signup now to be able to comment, vote and more in the funniest community on the Internet!
+                    </p>
+                    <button action="/register" type="button" id="register-button"
+                        class="btn btn-success">Register</button>
+                </div>
+            </div>
+            <div class="box content-side">
+                <div class="title">Shortcuts</div>
+                <div class="text-content">
+                    <ul id="jump-menu">
+                        <li>J - Jump to next post</li>
+                        <li>K - Jump to previous post</li>
+                        <li>L - Like current post</li>
+                        <li>H - Dislike current post</li>
+                        <li>C - Show comments of current post</li>
+                        <li>O - Open current post in a new tab</li>
+                        <li>Z - Zoom in on current post</li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
 
 
-        <div class=" col-md-6 d-inline-block mx-auto align-items-center px-2 content-side-center order-3 order-md-2 ">
+        <div class="" id="content-side-center>">
             <% for (let meme of memes){%>
-                <div class="col-12 pb-3">
+                <div class=" col-12 pb-3 post">
                     <div class="container-fluid px-0 ">
                         <div class="row">
                             <div class="col-md-12">
@@ -39,15 +61,19 @@
 
                 </div>
                 <% }%>
-
-
-
         </div>
-        <div class=" col-md-2 mx-auto  p-2 d-inline-block flex-column content-side-right box order-2 order-md-3">
-            <h1>This is the index page</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ratione eligendi
-                laudantium, vero blanditiis ad commodi unde ex rem magni! Sapiente, quidem eum perspiciatis explicabo
-                consequatur vitae architecto repudiandae!
-            </p>
+        <div id="content-side-right">
+            <div class="box content-side">
+                <div class="title">
+                    <h1>This is the index page</h1>
+                </div>
+                <div class="text-content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ratione eligendi
+                        laudantium, vero blanditiis ad commodi unde ex rem magni! Sapiente, quidem eum perspiciatis
+                        explicabo
+                        consequatur vitae architecto repudiandae!
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
