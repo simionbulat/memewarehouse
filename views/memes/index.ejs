@@ -65,14 +65,20 @@
         <div id="content-side-right">
             <div class="box content-side">
                 <div class="title">
-                    <h1>This is the index page</h1>
+                    Check out the most voted posts!
+
                 </div>
                 <div class="text-content">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ratione eligendi
-                        laudantium, vero blanditiis ad commodi unde ex rem magni! Sapiente, quidem eum perspiciatis
-                        explicabo
-                        consequatur vitae architecto repudiandae!
-                    </p>
+                    <ul id="most-votes">
+                        <% for(let post of memes){ %>
+                            <li>
+                                <div>
+                                    <%=post.title%>
+                                </div>
+                            </li>
+
+                            <% } %>
+                    </ul>
                 </div>
             </div>
             <div id="scroll-to-top" onclick="back_to_top_button_push()" style="visibility: hidden;">

@@ -19,7 +19,6 @@ const opts = { toJSON: { virtuals: true } };
 const memeSchema = new Schema({
     title: String,
     image: ImageSchema,
-    description: String,
     //author
     author: {
         id: {

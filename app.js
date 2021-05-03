@@ -102,6 +102,8 @@ const styleSrcUrls = [
     "https://stackpath.bootstrapcdn.com",
     "https://fonts.googleapis.com",
     "https://use.fontawesome.com",
+    "https://npm.fontawesome.com/",
+
 ];
 const connectSrcUrls = [
     "https://api.mapbox.com",

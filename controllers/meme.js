@@ -69,7 +69,6 @@ module.exports.deleteMemes = async (req, res) => {
 
     const deletedMeme = await Meme.findByIdAndDelete(id);
     await cloudinary.uploader.destroy(deletedMeme.image.filename);
-    console.log("deleted meme is", deletedMeme)
     req.flash("success", "Succesfully deleted meme");
     res.redirect("/memes");
 }
