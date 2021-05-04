@@ -1,0 +1,12 @@
+header {
+  text: green;
+}
+
+header p {
+  color: red;
+}
+
+header p:after {
+  content: "Wa nauz nauz";
+}
+/*# sourceMappingURL=style.css.map */

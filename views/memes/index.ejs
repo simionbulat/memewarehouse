@@ -36,29 +36,52 @@
                 <div class=" col-12 pb-3 post">
                     <div class="container-fluid px-0 ">
                         <div class="row">
+
                             <div class="col-md-12">
-                                <img class="img-fluid" src="<%=meme.image.url %>" alt="">
+                                <div class=" card card-body">
+                                    <h5 class="card-title">
+                                        <a href='/memes/<%=meme._id%>'>
+                                            <%= meme.title%>
+                                        </a>
+                                    </h5>
+                                    <img class="img-fluid" src="<%=meme.image.url %>" alt="">
+                                    <div class="text-content text-muted" id="post-bottom-text">
+                                        <div class="" id="upper-level">
+                                            <div class="custom-row">
+                                                <div class="points-value">
+                                                    * <%= meme.points %> Points
+                                                </div>
+                                                <div class="comments-number">
+
+                                                    * <%= meme.comments.length %> comments
+                                                </div>
+
+                                            </div>
+                                            <div class="created-date">
+                                                2 days ago
+                                            </div>
+                                        </div>
+                                        <div class="" id="lower-level">
+                                            <div class="custom-row">
+                                                <div class="author-name">
+                                                    by <%=meme.author.username %>
+                                                </div>
+                                                <div class="vote">
+                                                    <button>Up</button>
+                                                    <button>Down</button>
+                                                </div>
+                                            </div>
+
+                                            <div class="social">
+                                                <a class="social-button" id="fb-button" href="#">F Share</a>
+                                                <a class="social-button" id="twitter-button" href="#">Twitter</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <a href='/memes/<%=meme._id%>'>
-                                    <%= meme.title%>
-                                </a>
-                            </h5>
-                            <p class="card-text">
-                                <%= meme.description %>
-                            </p>
-                        </div>
-
-                        <div class="card-footer text-muted">
-                            2 days ago
-                        </div>
-                    </div>
-
                 </div>
                 <% }%>
         </div>
@@ -68,12 +91,21 @@
                     Check out the most voted posts!
 
                 </div>
-                <div class="text-content">
+                <div class="text-content" id="votes-text-content">
                     <ul id="most-votes">
                         <% for(let post of memes){ %>
+
                             <li>
-                                <div>
-                                    <%=post.title%>
+                                <div class="item-voted-posts">
+                                    <div class="image-voted-posts">
+                                        <img src="<%=post.image.url%>" alt="" class="img-thumb-vote">
+                                    </div>
+                                    <div class="title-voted-posts">
+                                        <%=post.title%>
+                                    </div>
+                                    <div class="points-voted-posts">
+                                        <%=post.points%>
+                                    </div>
                                 </div>
                             </li>
 

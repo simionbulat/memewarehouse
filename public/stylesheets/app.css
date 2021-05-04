@@ -1,4 +1,6 @@
-
+.navbar{
+    padding:0;
+}
 
 #main-container{
     display: flex;
@@ -14,7 +16,12 @@
     background-color: #ebeced;
 }
 
+a{
+    text-decoration: none;
+    color:inherit;
+}
 
+/*---------------- inside the box ------------- */
 .text-content{
     background-color:white;
     padding:1rem;
@@ -34,21 +41,39 @@
     font-size:12px;
 }
 
+ /* ----------------content areas--------- */
  #content-side-left{
     float:left;
+    
 }
 
  
 #content-side-right{  
    float:right;
+   
 }
 
 #content-side-center{
     display:inline-block;
     width: 540px;
+    
+    
 }
 
 
+@media (min-width: 1000px){
+    .title{
+        padding:3rem;
+    }
+   
+}
+/* --------------misc------------- */
+.custom-row{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
 .noresize {
     resize: none;
  }
@@ -66,7 +91,7 @@
 }
 
 
-/* navbar/ */
+/* ----------------navbar---------------- */
 .navbar-color{
     background-color: #302c2c;
     border-color: #0e0606;
@@ -85,6 +110,7 @@
     padding-left:0;
 }
 
+/* ------------------------scroll to top----------------  */
 #scroll-to-top{
     margin:auto;
     align-self: flex-end;
@@ -98,6 +124,100 @@
     background-color: wheat;
 }
 
+
+/* ----------------most voted right side---------------  */
 #most-votes{
+    list-style: none;
+    padding:0;
+}
+
+.item-voted-posts{
+    display:flex;
+    flex-direction: row nowrap;
+    justify-content:space-between;
+    border-bottom: 1px solid #c5c8cb;
+    align-items: center;
+
+
+}
+
+.img-thumb-vote{
+    width:40px;
+    height:40px;
+    margin-left:0.5rem;
+}
+
+#votes-text-content{
+    padding:0;
+}
+
+.points-voted-posts{
+    margin-right:0.7rem;
+}
+
+.title-voted-posts{
     
+}
+
+/* -----------meme post area-------- */
+#post-bottom-text{
+    display:flex;
+    flex-flow: column nowrap;
+}
+
+#upper-level,#lower-level{
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content: space-between;
+    
+}
+
+#upper-level{
+    margin-bottom:1rem;
+    
+}
+
+#lower-level{
+   
+}
+
+.points-value{
+    margin-right:1rem;
+}
+
+.social{
+    display:flex;
+    align-items: center;
+    
+}
+
+.social-button{
+    margin:0 0.3rem ;
+}
+#fb-button{
+    background:#3b5998;
+    
+}
+#twitter-button{
+    background:#1DA1F2;
+}
+
+#fb-button,#twitter-button{
+    border-radius: 4px;
+    padding:0.2rem;
+    text-decoration: none;
+    color:white;
+    
+    height:30px;
+}
+
+.vote > button{
+    border-radius: 4px;
+    padding:0.2rem;
+    text-decoration: none;
+    width:80px;
+    height:30px;
+}
+.vote{
+    margin-left:0.5rem;
 }
