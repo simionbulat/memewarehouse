@@ -1,61 +1,3 @@
-.user-container {
-  margin: 10% auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  width: 80%;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
-}
-
-.user-description {
-  width: 40%;
-  padding: 1.5rem;
-}
-
-.user-meme-list {
-  width: 60%;
-  margin-left: 2em;
-  text-align: center;
-}
-
-.user-meme-list > ul > li {
-  list-style: none;
-}
-
-.user-meme-list > ul {
-  padding: 0 1.5rem;
-}
-
-.user-username {
-  text-transform: uppercase;
-  margin: 1.5rem 0;
-  border-bottom: 1px solid #efefef;
-}
-
-.meme-detail {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
-}
-
-.image-thumbnail {
-  width: 50px;
-  height: 50px;
-}
-
 .navbar {
   padding: 0;
 }
@@ -294,4 +236,4 @@ a {
   margin-left: 0.5rem;
   text-align: center;
 }
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=app.css.map */

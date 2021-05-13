@@ -1,0 +1,50 @@
+
+.user-container{
+    margin:10% auto;
+    display:flex;
+    justify-content: space-evenly;
+    width:80%;
+    align-items: flex-start;
+    flex-flow:row nowrap;
+
+}
+.user-description{
+    width:40%;
+    padding:1.5rem;
+ }
+ 
+
+.user-meme-list{
+    width:60%;
+    margin-left:2em;
+    text-align: center;
+
+}
+
+
+
+.user-meme-list > ul>li{
+    list-style: none;
+    
+}
+
+.user-meme-list > ul{
+    padding:0 1.5rem;
+}
+
+.user-username{
+    text-transform:uppercase;
+    margin: 1.5rem 0;
+    border-bottom:1px solid #efefef;
+    
+}
+.meme-detail{
+    display:flex;
+    flex-flow: row nowrap;
+
+}
+
+.image-thumbnail{
+    width:50px;
+    height:50px;
+}

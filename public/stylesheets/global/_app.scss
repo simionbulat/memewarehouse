@@ -62,9 +62,7 @@ a{
 
 
 @media (min-width: 1000px){
-    .title{
-        padding:3rem;
-    }
+    
    
 }
 /* --------------misc------------- */
@@ -216,8 +214,10 @@ a{
     padding:0.2rem;
     text-decoration: none;
     width:80px;
-    height:30px;
+    height:40px;
+    text-align: center;
 }
 .vote{
     margin-left:0.5rem;
+    text-align: center;
 }

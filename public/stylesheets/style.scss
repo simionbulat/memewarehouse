@@ -1,12 +1,1 @@
-$textColor: green;
-$content:"Wa nauz nauz";
-
-header{
-    text:$textColor;
-    p{
-        color:red;
-        &:after{
-            content:$content;
-        }
-    }
-}    
+@import 'user/user','global/app';

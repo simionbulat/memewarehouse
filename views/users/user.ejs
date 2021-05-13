@@ -1,31 +1,46 @@
 <% layout("layouts/boilerplate") %>
-    <div class="row">
-        <div class="col-md-4">
+    <div class="user-container">
+        <div class=" card user-description">
 
-            <div class="thumbnail">
+            <div class="thumbnail ">
+                <h3>Details</h3>
+                <div class="caption">
+                    <h4>Email: <a href="mailto:<%= user.email %>">
+                            <%= user.username %>
+                        </a> </h4>
 
-                <div class="caption"><a href="mailto:<%= user.email %>">
-                        <%= user.email %>
-                    </a></div>
+                </div>
             </div>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quasi similique architecto ad modi sunt
-            quaerat possimus, officiis quos. Voluptatibus repellendus exercitationem, id saepe sunt consectetur non quam
-            sapiente assumenda.
-
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quasi similique architecto ad modi sunt
-            quaerat possimus, officiis quos. Voluptatibus repellendus exercitationem, id saepe sunt consectetur non quam
-            sapiente assumenda.
+            <div class="description">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ratione dolorem nostrum accusamus, atque
+                necessitatibus soluta incidunt tenetur nemo, alias consectetur similique facere, reprehenderit in quo
+                dolor nobis facilis? Nihil.
+                Tempore amet fuga consequatur totam consectetur pariatur, possimus odio temporibus dolorum ut incidunt
+                nobis et. Molestiae, assumenda commodi sequi dolor sint iusto, temporibus necessitatibus, corrupti
+                debitis facere suscipit natus quam!
+            </div>
         </div>
-        <div class="col-md-8">
-            <h3>
-                <%= user.username %>'s memes:
+        <div class=" user-meme-list card">
+
+            <h3 class="user-username">
+                <%= user.username %>'s creation:
             </h3>
+
             <ul>
-                <% memes.forEach(function(meme) { %>
-                    <li><a href="/memes/<%= meme.id %>">
-                            <%= meme.name %>
-                        </a></li>
-                    <% }); %>
+                <% for (let meme of memes){ %>
+
+                    <li>
+                        <div class="meme-detail">
+
+                            <a href="/memes/<%= meme._id %>">
+
+                                <img src="<%=meme.image.url %> " alt="" class="image-thumbnail">
+                                <%= meme.title %>
+
+                            </a>
+                        </div>
+                    </li>
+                    <% }; %>
             </ul>
         </div>
     </div>
