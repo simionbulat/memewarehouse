@@ -66,6 +66,13 @@ a{
    
 }
 /* --------------misc------------- */
+.reduce-length{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
 .custom-row{
     display:flex;
     flex-direction: row;
@@ -82,8 +89,9 @@ a{
 }
 
 .box{
-    border-radius: 4px;
+    
     border: 1px solid #c5c8cb;
+    border-radius: 2px;
     height:fit-content;
     margin:1.5rem  auto;
 }
@@ -153,9 +161,7 @@ a{
     margin-right:0.7rem;
 }
 
-.title-voted-posts{
-    
-}
+
 
 /* -----------meme post area-------- */
 #post-bottom-text{
@@ -175,9 +181,7 @@ a{
     
 }
 
-#lower-level{
-   
-}
+
 
 .points-value{
     margin-right:1rem;
@@ -220,4 +224,13 @@ a{
 .vote{
     margin-left:0.5rem;
     text-align: center;
+}
+
+//--------- best comments area ------- 
+
+.row-spaced{
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
 }

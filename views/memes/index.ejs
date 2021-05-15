@@ -115,6 +115,24 @@
                     </ul>
                 </div>
             </div>
+            <div class="box content-side-side">
+                <div class="title">
+                    Best Comments
+                </div>
+                <div class="text-content">
+                    <% for (let post of topCommentMemes){ %>
+                        <div class="row-spaced">
+                            <div class="reduce-length">
+                                <%=post.title%>
+
+                            </div>
+                            <div>
+                                <%=post.points %>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+            </div>
             <div id="scroll-to-top" onclick="back_to_top_button_push()" style="visibility: hidden;">
                 <img src="images/back-to-top.png" alt="">
             </div>

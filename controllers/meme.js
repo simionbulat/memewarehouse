@@ -5,7 +5,8 @@ const { cloudinary } = require("../cloudinary");
 //index ..show all memes on page
 module.exports.index = async (req, res) => {
     const memes = await Meme.find({});
-    res.render('memes/index', { memes });
+    const topCommentMemes = await Meme.find({}).sort({ points: -1 }).limit(10);
+    res.render('memes/index', { memes, topCommentMemes });
 }
 
 //render view to create new meme page
