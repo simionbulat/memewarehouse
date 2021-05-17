@@ -17,9 +17,11 @@ const mongoSanitize = require('express-mongo-sanitize');
 const memeRoutes = require("./routes/memes");
 const commentsRoutes = require("./routes/comments");
 const userRoutes = require("./routes/users");
+const voteRoutes = require('./routes/vote');
 const resetPasswordRoutes = require('./routes/resetPassword');
 const bodyParser = require("body-parser");
-const User = require("./models/user")
+const User = require("./models/user");
+
 
 const MongoDBStore = require("connect-mongo")(session);
 
@@ -96,6 +98,7 @@ const scriptSrcUrls = [
     "https://kit.fontawesome.com",
     "https://cdnjs.cloudflare.com",
     "https://cdn.jsdelivr.net",
+    "https://code.jquery.com"
 ];
 const styleSrcUrls = [
     "https://kit-free.fontawesome.com",
@@ -144,6 +147,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
 //=============App Locals=============
+
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
@@ -154,8 +158,10 @@ app.use((req, res, next) => {
 //==============App Routes Setul======
 app.use('/', userRoutes);
 app.use('/', resetPasswordRoutes);
+
 app.use("/memes", memeRoutes);
 app.use('/memes/:id/comments', commentsRoutes);
+app.use('/vote/:id', voteRoutes);
 
 
 

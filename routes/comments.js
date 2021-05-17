@@ -13,4 +13,3 @@ router.delete('/:commentId', isLoggedIn, isCommentAuthor, catchAsync(comments.de
 
 module.exports = router;
 
-

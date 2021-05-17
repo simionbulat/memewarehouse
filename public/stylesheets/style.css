@@ -229,6 +229,20 @@ a {
   margin-right: 0.7rem;
 }
 
+.vote {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+
+.vote-up {
+  margin-right: 5px;
+}
+
 /* -----------meme post area-------- */
 #post-bottom-text {
   display: -webkit-box;

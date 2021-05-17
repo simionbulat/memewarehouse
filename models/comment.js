@@ -17,3 +17,9 @@ const commentSchema = new Schema({
 });
 
 module.exports = mongoose.model("Comment", commentSchema);
+
+
+
+//termina de facut formu de trimis post request sa updatezi punctaju memeului. 
+
+//apoi useru cand da refresh ,primeste punctele 

@@ -14,7 +14,7 @@ ImageSchema.virtual('thumbnail').get(function () {
 });
 
 
-const opts = { toJSON: { virtuals: true } };
+
 
 const memeSchema = new Schema({
     title: String,
@@ -27,10 +27,19 @@ const memeSchema = new Schema({
         },
         username: String
     },
-    points: {
+    voteScore: {
         type: Number,
         default: 0
     },
+    upVotes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    downVotes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+
     //comments
     comments: [
         {

@@ -2,9 +2,11 @@ const Meme = require('../models/meme');
 const { cloudinary } = require("../cloudinary");
 
 
+
 //index ..show all memes on page
 module.exports.index = async (req, res) => {
     const memes = await Meme.find({});
+
     const topCommentMemes = await Meme.find({}).sort({ points: -1 }).limit(10);
     res.render('memes/index', { memes, topCommentMemes });
 }
@@ -27,6 +29,10 @@ module.exports.createMemes = async (req, res) => {
         const { path, filename } = req.file;
         newMeme.image = { url: path, filename }
         newMeme.author = author;
+        newMeme.upVotes = [];
+        newMeme.downVotes = [];
+        newMeme.voteScore = 0;
+
         await newMeme.save();
 
         req.flash("success", "Succesfully created a piece of history!");
@@ -54,7 +60,7 @@ module.exports.showMemes = async (req, res) => {
 
 
     if (!newMeme) {
-        req.flash("error", "Cannot find that ting done(meme)");
+        req.flash("error", "Cannot find that meme page");
         return res.redirect("/memes");
     }
     console.log(newMeme);

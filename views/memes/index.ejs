@@ -51,7 +51,7 @@
                                         <div class="" id="upper-level">
                                             <div class="custom-row">
                                                 <div class="points-value">
-                                                    * <%= meme.points %> Points
+                                                    * <%= meme.voteScore %> Votes
                                                 </div>
                                                 <div class="comments-number">
 
@@ -66,11 +66,15 @@
                                         <div class="" id="lower-level">
                                             <div class="custom-row">
                                                 <div class="author-name">
-                                                    by <%=meme.author.username %>
+                                                    by
                                                 </div>
                                                 <div class="vote">
-                                                    <button>Up</button>
-                                                    <button>Down</button>
+                                                    <form method="POST" class="vote-up" data-id="<%=meme._id %>">
+                                                        <button id="upvote">&#8595;</button>
+                                                    </form>
+                                                    <form method="POST" class="vote-down" data-id="<%=meme._id %>">
+                                                        <button id="downvote">&#8595;</button>
+                                                    </form>
                                                 </div>
                                             </div>
 

@@ -143,8 +143,6 @@ a{
     justify-content:space-between;
     border-bottom: 1px solid #c5c8cb;
     align-items: center;
-
-
 }
 
 .img-thumb-vote{
@@ -160,7 +158,13 @@ a{
 .points-voted-posts{
     margin-right:0.7rem;
 }
-
+.vote{
+    display: flex;
+    flex-flow: row nowrap;
+}
+.vote-up{
+    margin-right:5px;
+}
 
 
 /* -----------meme post area-------- */
