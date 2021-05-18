@@ -239,7 +239,7 @@ a {
           flex-flow: row nowrap;
 }
 
-.vote-up {
+.vote-up, .vote-down {
   margin-right: 5px;
 }
 

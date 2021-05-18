@@ -65,9 +65,6 @@
                                         </div>
                                         <div class="" id="lower-level">
                                             <div class="custom-row">
-                                                <div class="author-name">
-                                                    by
-                                                </div>
 
 
                                                 <div class="vote">
@@ -78,7 +75,7 @@
                                                         <% } else{ %>
                                                             <form method="POST" class="vote-up"
                                                                 data-id="<%=meme._id %>">
-                                                                <button id="upvote">&#8595;</button>
+                                                                <button id="upvote">&uarr;</button>
                                                             </form>
                                                             <form method="POST" class="vote-down"
                                                                 data-id="<%=meme._id %>">
@@ -86,6 +83,10 @@
                                                             </form>
                                                             <% } %>
                                                 </div>
+                                                <div class="author-name">
+                                                    by <%=meme.author.username %>
+                                                </div>
+
                                             </div>
 
                                             <div class="social">
