@@ -6,7 +6,7 @@ const votes = require('../controllers/votes');
 const Meme = require('../models/meme');
 
 router.route("/vote-up")
-    .put(async (req, res) => {
+    .put(isLoggedIn, async (req, res) => {
         console.log("s a ajuns la upvote");
         const { id } = req.params;
         try {
@@ -21,7 +21,7 @@ router.route("/vote-up")
     });
 
 router.route("/vote-down")
-    .put(async (req, res) => {
+    .put(isLoggedIn, async (req, res) => {
         console.log("s a ajuns la votedown");
         const { id } = req.params;
         try {
