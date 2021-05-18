@@ -1,3 +1,5 @@
+
+
 $(document).ready(function () {
     $(".vote-up").submit(function (e) {
         e.preventDefault();
@@ -32,6 +34,7 @@ $(document).ready(function () {
             }
         });
     });
+
 });
 
 
