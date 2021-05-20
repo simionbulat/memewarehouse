@@ -124,22 +124,25 @@
             <div class="custom-box content-side">
                 <div class="title">
                     Check out the most voted posts!
-
                 </div>
                 <div class="text-content" id="votes-text-content">
-                    <ul id="most-votes">
-                        <% for(let post of memes){ %>
+                    <ul class="most-votes">
+                        <% for(let post of topCommentMemes){ %>
 
                             <li>
                                 <div class="item-voted-posts">
                                     <div class="image-voted-posts">
-                                        <img src="<%=post.image.url%>" alt="" class="img-thumb-vote">
+                                        <a href="/memes/<%=post._id%>"><img src="<%=post.image.url%>" alt=""
+                                                class="img-thumb-vote"></a>
+
                                     </div>
                                     <div class="title-voted-posts reduce-length">
-                                        <%=post.title%>
+                                        <a href="/memes/<%=post._id%>">
+                                            <%=post.title%>
+                                        </a>
                                     </div>
                                     <div class="points-voted-posts">
-                                        <%=post.points%>
+                                        <%=post.voteScore%>
                                     </div>
                                 </div>
                             </li>

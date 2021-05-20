@@ -276,7 +276,7 @@ a {
 }
 
 /* ----------------most voted right side---------------  */
-#most-votes {
+.most-votes {
   list-style: none;
   padding: 0;
   margin-bottom: 0;
@@ -290,9 +290,9 @@ a {
   -webkit-box-direction: normal;
       -ms-flex-direction: row nowrap;
           flex-direction: row nowrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   border-bottom: 1px solid #c5c8cb;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -311,6 +311,7 @@ a {
 
 .points-voted-posts {
   margin-right: 0.7rem;
+  margin-left: auto;
 }
 
 .vote {
@@ -325,6 +326,10 @@ a {
 
 .vote-up, .vote-down {
   margin-right: 5px;
+}
+
+.title-voted-posts {
+  margin: 0 1rem;
 }
 
 /* -----------meme post area-------- */

@@ -1,6 +1,6 @@
 const Meme = require('../models/meme');
 const { cloudinary } = require("../cloudinary");
-
+const { getTopComments } = require('../middleware');
 
 
 //index ..show all memes on page
@@ -11,7 +11,12 @@ module.exports.index = async (req, res) => {
     });
 
 
-    const topCommentMemes = await Meme.find({}).sort({ points: -1 }).limit(10);
+    const topCommentMemes = await getTopComments();
+
+    for (let meme of topCommentMemes) {
+        console.log(meme.voteScore);
+    }
+
     res.render('memes/index', { memes, topCommentMemes });
 }
 

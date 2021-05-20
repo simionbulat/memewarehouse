@@ -66,3 +66,13 @@ module.exports.validateComment = (req, res, next) => {
         next()
     }
 }
+
+module.exports.getTopComments = async () => {
+    const foundMeme = await Meme.find().sort({ 'voteScore': -1 }).limit(10);
+
+    // for (let meme of foundMeme) {
+    //     console.log(meme.voteScore);
+    // }
+
+    return foundMeme;
+}
