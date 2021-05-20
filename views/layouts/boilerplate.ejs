@@ -19,11 +19,14 @@
 <body class="d-flex flex-column vh-100" id="main-area">
     <%- include('../partials/navbar')%>
 
-        <main class="container ">
+        <main class="custom-container ">
             <%- include('../partials/flash')%>
                 <%- body %>
         </main>
         <%- include('../partials/footer')%>
+            <div id="scroll-to-top" onclick="back_to_top_button_push()" style="visibility: hidden;">
+                <img src="images/back-to-top.png" alt="">
+            </div>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
                 integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
                 crossorigin="anonymous"></script>

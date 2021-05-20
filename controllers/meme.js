@@ -5,7 +5,11 @@ const { cloudinary } = require("../cloudinary");
 
 //index ..show all memes on page
 module.exports.index = async (req, res) => {
-    const memes = await Meme.find({});
+    const memes = await Meme.find({}).populate({
+        path: 'comments',
+        populate: { path: 'author' }
+    });
+
 
     const topCommentMemes = await Meme.find({}).sort({ points: -1 }).limit(10);
     res.render('memes/index', { memes, topCommentMemes });

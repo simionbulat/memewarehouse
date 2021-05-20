@@ -1,103 +1,7 @@
+// ---------------navbar----------
 .navbar{
     padding:0;
 }
-
-#main-container{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content:space-around;
-    min-width: 860px;
-    max-width: 1180px;
-    margin:0 auto;
-    
-}
-
-#main-area{
-    background-color: #ebeced;
-}
-
-a{
-    text-decoration: none;
-    color:inherit;
-}
-
-/*---------------- inside the box ------------- */
-.text-content{
-    background-color:white;
-    padding:1rem;
-}
-
-
-.title{
-    background-color: #f6f6f6;
-    border-bottom: 1px solid #e1e1e1;
-    padding: 1rem;
-    font-size:12px;
-    font-weight:700;
-}
-
-.content-side{
-    width:300px;
-    font-size:12px;
-}
-
- /* ----------------content areas--------- */
- #content-side-left{
-    float:left;
-    
-}
-
- 
-#content-side-right{  
-   float:right;
-   
-}
-
-#content-side-center{
-    display:inline-block;
-    width: 540px;
-    
-    
-}
-
-
-@media (min-width: 1000px){
-    
-   
-}
-/* --------------misc------------- */
-.reduce-length{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1; /* number of lines to show */
-    -webkit-box-orient: vertical;
-}
-.custom-row{
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    
-}
-.noresize {
-    resize: none;
- }
-
-.post{
-    width:500px;
-    padding:15px;
-}
-
-.box{
-    
-    border: 1px solid #c5c8cb;
-    border-radius: 2px;
-    height:fit-content;
-    margin:1.5rem  auto;
-}
-
-
-/* ----------------navbar---------------- */
 .navbar-color{
     background-color: #302c2c;
     border-color: #0e0606;
@@ -115,6 +19,169 @@ a{
     list-style: none;
     padding-left:0;
 }
+
+
+// -----------container----------
+.custom-container{
+   
+    margin: 0 auto;
+    
+
+}
+
+.main-container{
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content:space-between;
+    min-width: 860px;
+    max-width: 1190px;
+    margin-top:0;
+    width:80%;
+    
+}
+
+.content-side-center{
+    display:inline-block;
+    width: 500px;    
+}
+
+.content-side{
+    width:300px;
+    font-size:12px;
+}
+
+
+ .content-side-left{    
+    margin-right:20px;
+}
+
+ 
+.content-side-right{  
+    margin-left:20px;
+}
+
+
+
+#main-area{
+    background-color: #ebeced;
+}
+
+/* --------------misc------------- */
+.reduce-length{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    
+}
+
+.custom-card-title h5 {
+    line-height: 1.6;
+}
+
+.custom-row{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-between;
+    
+}
+.custom-col{
+    display:flex;
+    flex-flow: column nowrap;
+    align-items:center;
+    justify-content: space-between;
+    
+}
+.noresize {
+    resize: none;
+ }
+
+a{
+    text-decoration: none;
+    color:inherit;
+}
+
+
+
+
+/*----------------  box ------------- */
+
+.custom-box{
+    border: 1px solid #c5c8cb;
+    border-radius: 1px;
+    height:fit-content;
+    margin:1rem  auto;
+}
+
+
+.text-content{
+    background-color:white;
+    padding:1rem;
+    font-size:16px;
+}
+
+
+.title{
+    background-color: #f6f6f6;
+    padding: 1rem;
+    font-size:16px;
+    font-weight:700;
+}
+
+
+// ---------------post-------------
+.post{
+    width:500px;
+    margin:1rem auto;
+   
+}
+
+.custom-card-title{
+    background-color: #f6f6f6;
+    margin:0;
+    padding:0.5rem 0.5rem 0 0.5rem ;
+    height:50px;
+}
+
+
+
+.post-image{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#f6f6f6;
+}
+
+
+.show-comments{
+    
+    background-color: #f6f6f6;
+    display: flex;
+    flex-flow:column nowrap;
+    
+}
+
+.comment-block{
+    display:flex;
+    flex-flow:row nowrap;
+    align-items:flex-start;
+    padding:0.3rem;
+
+}
+.comment-username{
+    font-weight: 700;
+    margin:0 0.5rem;
+
+}
+.view-comments{
+    margin: 0.1rem 0.2rem;
+    font-size:10;
+    color: rgba(var(--f52,142,142,142),1);
+}
+
 
 /* ------------------------scroll to top----------------  */
 #scroll-to-top{
@@ -135,6 +202,7 @@ a{
 #most-votes{
     list-style: none;
     padding:0;
+    margin-bottom:0;
 }
 
 .item-voted-posts{
@@ -186,7 +254,10 @@ a{
     
 }
 
-
+.custom-card{
+     border:1px solid #c5c8cb;
+     background-color: #f6f6f6;
+}
 
 .points-value{
     margin-right:1rem;
@@ -198,6 +269,9 @@ a{
     
 }
 
+
+
+// ---------social links---------
 .social-button{
     margin:0 0.3rem ;
 }

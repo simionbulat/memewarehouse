@@ -20,6 +20,7 @@ module.exports.voteDown = async (req, res) => {
     const { id } = req.params;
     try {
         const newMeme = await Meme.findById(id);
+        console.log(newMeme.downVotes, req.user._id);
         newMeme.downVotes.push(req.user._id);
         newMeme.voteScore--;
         newMeme.save();

@@ -1,8 +1,8 @@
 <% layout('layouts/boilerplate')%>
 
-    <div id="main-container">
-        <div id="content-side-left">
-            <div class="box content-side">
+    <div class="main-container">
+        <div class="content-side-left">
+            <div class="custom-box content-side">
                 <div class="title">
                     New here?
                 </div>
@@ -13,7 +13,7 @@
                         class="btn btn-success">Register</button>
                 </div>
             </div>
-            <div class="box content-side">
+            <div class="custom-box content-side">
                 <div class="title">Shortcuts</div>
                 <div class="text-content">
                     <ul id="jump-menu">
@@ -30,80 +30,98 @@
 
         </div>
 
-
-        <div class="" id="content-side-center>">
+        <div class="content-side-center">
             <% for (let meme of memes){%>
-                <div class=" col-12 pb-3 post">
-                    <div class="container-fluid px-0 ">
-                        <div class="row">
-
-                            <div class="col-md-12">
-                                <div class=" card card-body">
-                                    <h5 class="card-title">
-                                        <a href='/memes/<%=meme._id%>'>
-                                            <%= meme.title%>
-                                        </a>
-                                    </h5>
-
-                                    <img class="img-fluid" src="<%=meme.image.url %>" alt="">
-
-                                    <div class="text-content text-muted" id="post-bottom-text">
-                                        <div class="" id="upper-level">
-                                            <div class="custom-row">
-                                                <div class="points-value">
-                                                    * <%= meme.voteScore %> Votes
-                                                </div>
-                                                <div class="comments-number">
-
-                                                    * <%= meme.comments.length %> comments
-                                                </div>
-
-                                            </div>
-                                            <div class="created-date">
-                                                2 days ago
-                                            </div>
-                                        </div>
-                                        <div class="" id="lower-level">
-                                            <div class="custom-row">
-
-
-                                                <div class="vote">
-                                                    <% if (!currentUser){ %>
-                                                        <div class="need-to-be-logged-in">
-                                                            <h5>Login to vote</h5>
-                                                        </div>
-                                                        <% } else{ %>
-                                                            <form method="POST" class="vote-up"
-                                                                data-id="<%=meme._id %>">
-                                                                <button id="upvote">&uarr;</button>
-                                                            </form>
-                                                            <form method="POST" class="vote-down"
-                                                                data-id="<%=meme._id %>">
-                                                                <button id="downvote">&#8595;</button>
-                                                            </form>
-                                                            <% } %>
-                                                </div>
-                                                <div class="author-name">
-                                                    by <%=meme.author.username %>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="social">
-                                                <a class="social-button" id="fb-button" href="#">F Share</a>
-                                                <a class="social-button" id="twitter-button" href="#">Twitter</a>
-                                            </div>
-                                        </div>
+                <div class="custom-col post">
+                    <div class=" custom-card">
+                        <div class="custom-card-title">
+                            <h5 class="reduce-length">
+                                <a href='/memes/<%=meme._id%>'>
+                                    <%= meme.title%>
+                                </a>
+                            </h5>
+                        </div>
+                        <div class="post-image">
+                            <img class="img-fluid" src="<%=meme.image.url %>" alt="">
+                        </div>
+                        <div class="text-content text-muted" id="post-bottom-text">
+                            <div class="" id="upper-level">
+                                <div class="custom-row">
+                                    <div class="points-value">
+                                        * <%= meme.voteScore %> Votes
                                     </div>
+                                    <div class="comments-number">
+
+                                        * <%= meme.comments.length %> comments
+                                    </div>
+
+                                </div>
+                                <div class="created-date">
+                                    2 days ago
+                                </div>
+                            </div>
+                            <div class="" id="lower-level">
+                                <div class="custom-row">
+
+
+                                    <div class="vote">
+                                        <% if (!currentUser){ %>
+                                            <div class="need-to-be-logged-in">
+                                                <h5>Login to vote</h5>
+                                            </div>
+                                            <% } else{ %>
+                                                <form method="POST" class="vote-up" data-id="<%=meme._id %>">
+                                                    <button id="upvote">&uarr;</button>
+                                                </form>
+                                                <form method="POST" class="vote-down" data-id="<%=meme._id %>">
+                                                    <button id="downvote">&#8595;</button>
+                                                </form>
+                                                <% } %>
+                                    </div>
+                                    <div class="author-name">
+                                        by <%=meme.author.username %>
+                                    </div>
+
+                                </div>
+
+                                <div class="social">
+                                    <a class="social-button" id="fb-button" href="#">F Share</a>
+                                    <a class="social-button" id="twitter-button" href="#">Twitter</a>
                                 </div>
                             </div>
                         </div>
+                        <% if (meme.comments.length>0) { %>
+                            <div class="show-comments">
+
+                                <% for (let comment of meme.comments){ %>
+
+                                    <div class="comment-block">
+                                        <div class="comment-username">
+                                            <a href="/users/<%=comment.author._id %>">
+                                                <%=comment.author.username %>
+                                            </a>
+                                        </div>
+                                        <div class="comment-text reduce-length">
+                                            <%= comment.body %>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                        <% if (meme.comments.length>=2) { %>
+                                            <div class="view-comments">
+                                                <a href="/memes/<%= meme._id %>">View all <%=meme.comments.length %>
+                                                        comments!</a>
+                                            </div>
+                                            <% } %>
+                            </div>
+                            <% } %>
                     </div>
+
                 </div>
                 <% }%>
         </div>
-        <div id="content-side-right">
-            <div class="box content-side">
+
+        <div class="content-side-right">
+            <div class="custom-box content-side">
                 <div class="title">
                     Check out the most voted posts!
 
@@ -117,7 +135,7 @@
                                     <div class="image-voted-posts">
                                         <img src="<%=post.image.url%>" alt="" class="img-thumb-vote">
                                     </div>
-                                    <div class="title-voted-posts">
+                                    <div class="title-voted-posts reduce-length">
                                         <%=post.title%>
                                     </div>
                                     <div class="points-voted-posts">
@@ -130,7 +148,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="box content-side-side">
+            <div class="custom-box content-side-side">
                 <div class="title">
                     Best Comments
                 </div>
@@ -148,8 +166,6 @@
                         <% } %>
                 </div>
             </div>
-            <div id="scroll-to-top" onclick="back_to_top_button_push()" style="visibility: hidden;">
-                <img src="images/back-to-top.png" alt="">
-            </div>
+
         </div>
     </div>
