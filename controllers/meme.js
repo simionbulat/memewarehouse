@@ -1,21 +1,22 @@
 const Meme = require('../models/meme');
 const { cloudinary } = require("../cloudinary");
-const { getTopComments } = require('../middleware');
+const { getTopComments, getAllPosts, getDate, transformDate } = require('../middleware');
+const meme = require('../models/meme');
 
 
 //index ..show all memes on page
 module.exports.index = async (req, res) => {
-    const memes = await Meme.find({}).populate({
-        path: 'comments',
-        populate: { path: 'author' }
-    });
-
-
+    const memes = await getAllPosts();
     const topCommentMemes = await getTopComments();
-
-    for (let meme of topCommentMemes) {
-        console.log(meme.voteScore);
+    let date = Date.now();
+    console.log(date);
+    for (let meme of memes) {
+        console.log(meme.createdDate);
+        console.log('diff is', date - meme.createdDate);
+        meme.elapsedTime = transformDate(date - meme.createdDate);
+        console.log(meme.elapsedTime);
     }
+
 
     res.render('memes/index', { memes, topCommentMemes });
 }
@@ -41,6 +42,7 @@ module.exports.createMemes = async (req, res) => {
         newMeme.upVotes = [];
         newMeme.downVotes = [];
         newMeme.voteScore = 0;
+        newMeme.createdDate = getDate();
 
         await newMeme.save();
 
@@ -62,18 +64,13 @@ module.exports.showMemes = async (req, res) => {
     const { id } = req.params;
     const newMeme = await Meme.findById(id).populate({
         path: 'comments',
-        // Get friends of friends - populate the 'friends' array for every friend
         populate: { path: 'author' }
     })
-
-
 
     if (!newMeme) {
         req.flash("error", "Cannot find that meme page");
         return res.redirect("/memes");
     }
-    console.log(newMeme);
-
     res.render("memes/show", { meme: newMeme });
 
 }

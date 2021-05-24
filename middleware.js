@@ -76,3 +76,48 @@ module.exports.getTopComments = async () => {
 
     return foundMeme;
 }
+
+module.exports.getAllPosts = async () => {
+    return await Meme.find({}).populate({
+        path: 'comments',
+        populate: { path: 'author' }
+    });
+}
+
+module.exports.getDate = () => {
+
+    return Date.now();
+}
+
+module.exports.getPostAge = (time) => {
+    console.log('s-a ajuns aici', time);
+    return time;
+    // var reminderTime = new Date(this.getDate() - time);
+    // var hours = reminderTime.getHours();
+    // var days = hours % 24;
+    // return { hours, days };
+}
+
+module.exports.transformDate = (arg) => {
+    let text = ""
+    let time = arg / 1000;
+    let seconds = time;
+    let minutes = Math.floor(time / 60) % 60;
+    let hours = Math.floor(time / 3600) % 24;
+    let days = Math.floor(time / 86400);
+    console.log("seconds ", seconds);
+    console.log("minutes ", minutes);
+    console.log("hours ", hours);
+    console.log("days ", days);
+
+    if (days != 0) {
+        text = days + ` Days ago`
+    } else if (hours != 0) {
+        text = hours` Hours ago`
+    } else if (minutes != 0) {
+        text = minutes + ` Minutes ago`
+    } else if (seconds != 0) {
+        text = seconds + ' Seconds ago'
+    }
+    return text;
+}

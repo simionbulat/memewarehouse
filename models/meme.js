@@ -46,7 +46,14 @@ const memeSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Comment"
         }
-    ]
+    ],
+    createdDate: {
+        type: Number,
+    },
+    elapsedTime: {
+        type: String,
+        default: ''
+    }
 });
 
 

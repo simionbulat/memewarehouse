@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate')%>
 
-    <div class="main-container">
+    <div class="main-container" onload="test()">
         <div class="content-side-left">
             <div class="custom-box content-side">
                 <div class="title">
@@ -57,7 +57,10 @@
 
                                 </div>
                                 <div class="created-date">
-                                    2 days ago
+
+                                    <abbr class="timeago" id="timeago" title="<%=meme.createdDate %>">
+                                        <%=meme.elapsedTime%>
+                                    </abbr>
                                 </div>
                             </div>
                             <div class="" id="lower-level">
@@ -153,10 +156,11 @@
             </div>
             <div class="custom-box content-side-side">
                 <div class="title">
-                    Best Comments
+                    Latest Comments
                 </div>
                 <div class="text-content">
                     <% for (let post of topCommentMemes){ %>
+                        <!-- comments -->
                         <div class="row-spaced">
                             <div class="reduce-length">
                                 <%=post.title%>
