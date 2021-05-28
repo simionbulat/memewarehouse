@@ -9,12 +9,9 @@ module.exports.index = async (req, res) => {
     const memes = await getAllPosts();
     const topCommentMemes = await getTopComments();
     let date = Date.now();
-    console.log(date);
+
     for (let meme of memes) {
-        console.log(meme.createdDate);
-        console.log('diff is', date - meme.createdDate);
         meme.elapsedTime = transformDate(date - meme.createdDate);
-        console.log(meme.elapsedTime);
     }
 
 
@@ -66,6 +63,10 @@ module.exports.showMemes = async (req, res) => {
         path: 'comments',
         populate: { path: 'author' }
     })
+    let date = Date.now();
+
+    newMeme.elapsedTime = transformDate(date - newMeme.createdDate);
+
 
     if (!newMeme) {
         req.flash("error", "Cannot find that meme page");

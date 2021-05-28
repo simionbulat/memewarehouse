@@ -105,19 +105,16 @@ module.exports.transformDate = (arg) => {
     let minutes = Math.floor(time / 60) % 60;
     let hours = Math.floor(time / 3600) % 24;
     let days = Math.floor(time / 86400);
-    console.log("seconds ", seconds);
-    console.log("minutes ", minutes);
-    console.log("hours ", hours);
-    console.log("days ", days);
+
 
     if (days != 0) {
         text = days + ` Days ago`
     } else if (hours != 0) {
-        text = hours` Hours ago`
+        text = hours + ` Hours ago`
     } else if (minutes != 0) {
         text = minutes + ` Minutes ago`
     } else if (seconds != 0) {
-        text = seconds + ' Seconds ago'
+        text = Math.floor(seconds) + ' Seconds ago'
     }
     return text;
 }

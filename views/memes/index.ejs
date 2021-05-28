@@ -48,11 +48,13 @@
                             <div class="" id="upper-level">
                                 <div class="custom-row">
                                     <div class="points-value">
-                                        * <%= meme.voteScore %> Votes
+                                        <%= meme.voteScore %> Votes
                                     </div>
                                     <div class="comments-number">
+                                        <a href='/memes/<%=meme._id%>'>
+                                            <%= meme.comments.length %> Comments
+                                        </a>
 
-                                        * <%= meme.comments.length %> comments
                                     </div>
 
                                 </div>
@@ -82,7 +84,9 @@
                                                 <% } %>
                                     </div>
                                     <div class="author-name">
-                                        by <%=meme.author.username %>
+                                        by <a href="/users/<%=meme.author.id %> ">
+                                            <%=meme.author.username %>
+                                        </a>
                                     </div>
 
                                 </div>

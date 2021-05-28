@@ -159,7 +159,7 @@ abbr{
     display:flex;
     align-items: center;
     justify-content: center;
-    background-color:#f6f6f6;
+    background-color:white;
 }
 
 
@@ -170,6 +170,7 @@ abbr{
     flex-flow:column nowrap;
     
 }
+
 
 .comment-block{
     display:flex;
@@ -206,6 +207,14 @@ abbr{
 
 
 /* ----------------most voted right side---------------  */
+.need-to-be-logged-in{
+    margin-right: 1rem;
+    
+}
+.need-to-be-logged-in h5{
+    margin-bottom: 0;
+}
+
 .most-votes{
     list-style: none;
     padding:0;
@@ -267,7 +276,8 @@ abbr{
 .custom-card{
      border:1px solid #c5c8cb;
     background-color: #f6f6f6;
-    
+   
+    width: 500px;
 }
 
 .points-value{

@@ -1,28 +1,73 @@
 <% layout('layouts/boilerplate')%>
+<div class="main-container " id="meme-index-container">
+    <div class="custom-row dark-background" >
+        <div class="meme-col">
+           <div class="custom-card">
+                        <div class="custom-card-title">
+                            <h5 class="reduce-length">
+                                <a href='/memes/<%=meme._id%>'>
+                                    <%= meme.title%>
+                                </a>
+                            </h5>
+                        </div>
+                        <div class="post-image">
+                            <img class="img-fluid" src="<%=meme.image.url %>" alt="">
+                        </div>
+                        <div class="text-content text-muted" id="post-bottom-text">
+                            <div class="" id="upper-level">
+                                <div class="custom-row">
+                                    <div class="points-value">
+                                        <%= meme.voteScore %> Votes
+                                    </div>
+                                    <div class="comments-number">
+                                        <a href='/memes/<%=meme._id%>'>
+                                            <%= meme.comments.length %> Comments
+                                        </a>
 
-    <div class="row justify-content-center">
-        <div class="col-6">
-            <div class="container-fluid px-0 ">
-                <div class="row">
-                    <div class="col-md-12">
-                        <img class="img-fluid" src="<%=meme.image.url %>" alt="">
+                                    </div>
+
+                                </div>
+                                <div class="created-date">
+
+                                    <abbr class="timeago" id="timeago" title="<%=meme.createdDate %>">
+                                        <%=meme.elapsedTime%>
+                                    </abbr>
+                                </div>
+                            </div>
+                            <div class="" id="lower-level">
+                                <div class="custom-row">
+
+
+                                    <div class="vote">
+                                        <% if (!currentUser){ %>
+                                            <div class="need-to-be-logged-in">
+                                                <h5>Login to vote</h5>
+                                            </div>
+                                            <% } else{ %>
+                                                <form method="POST" class="vote-up" data-id="<%=meme._id %>">
+                                                    <button id="upvote">&uarr;</button>
+                                                </form>
+                                                <form method="POST" class="vote-down" data-id="<%=meme._id %>">
+                                                    <button id="downvote">&#8595;</button>
+                                                </form>
+                                                <% } %>
+                                    </div>
+                                    <div class="author-name">
+                                        by <a href="/users/<%=meme.author.id %> ">
+                                            <%=meme.author.username %>
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                                <div class="social">
+                                    <a class="social-button" id="fb-button" href="#">F Share</a>
+                                    <a class="social-button" id="twitter-button" href="#">Twitter</a>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
-                </div>
-
-            </div>
-
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <%= meme.title%>
-                    </h5>
-
-                </div>
-
-                <div class="card-footer text-muted">
-                    2 days ago
-                </div>
-
                 <% if(currentUser && meme.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
                     <div>
 
@@ -32,21 +77,15 @@
                     </div>
                     <% } %>
             </div>
-
-
         </div>
-        <div class="col-6">
+        <div class="meme-col">
             <% if (currentUser){%>
                 <h2>Leave a Comment</h2>
                 <form action="/memes/<%=meme._id%>/comments" method="POST" class="mb-3 validated-form" novalidate>
-                    <!-- <div class="mb-3">
-                    <label class="form-label" for="rating">Rating</label>
-                    <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
-                </div> -->
 
                     <div class="mb-3">
                         <label class="form-label" for="body">Comment Text</label>
-                        <textarea class="form-control" name="comment[body]" id="body" cols="30" rows="3"
+                        <textarea class="form-control noresize" name="comment[body]" id="body" cols="30" rows="3"
                             required></textarea>
                         <div class="valid-feedback">
                             Looks good!
@@ -58,31 +97,21 @@
                     <% for(let comment of meme.comments) { %>
                         <div class="card mb-3 ">
                             <div class="card-body">
-
-
-
-                                <p class="card-text">
-                                    by <%= comment.author.username %></br>
-                                        <%= comment.body %>
+                                <p class="card-text ">
+                                    <a class="comment-username" href="/users/<%=comment.author.id %> ">
+                                        <%= comment.author.username %>
+                                    </a>
+                                    <%= comment.body %>
                                 </p>
-
-                                <% if(currentUser && meme.author.id.equals(currentUser._id) || currentUser &&
-                                    currentUser.isAdmin){ %>
+                                <% if(currentUser && meme.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
                                     <form action="/memes/<%=meme._id%>/comments/<%=comment._id%>?_method=DELETE"
                                         method="POST">
                                         <button class="btn btn-sm btn-danger">Delete</button>
                                     </form>
                                     <% } %>
-
                             </div>
                         </div>
-                        <% } %>
-
-
+                    <% } %>
         </div>
-
-
-
     </div>
-
-    </div>
+</div>

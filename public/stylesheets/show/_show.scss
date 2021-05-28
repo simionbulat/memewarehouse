@@ -1,0 +1,13 @@
+#meme-index-container{
+    margin:0 auto;
+    
+}
+
+.meme-col{
+    display:flex;
+    flex-flow:column nowrap;
+    justify-content: flex-start;
+    width: 50%;
+    margin:1.5rem;
+    align-self: flex-start;
+}
