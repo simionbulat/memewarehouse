@@ -1,6 +1,6 @@
 const Meme = require('../models/meme');
 const { cloudinary } = require("../cloudinary");
-const { getTopComments, getAllPosts, getDate, transformDate } = require('../middleware');
+const { getTopComments, getAllPosts, getDate, transformDate,getLatestComments } = require('../middleware');
 const meme = require('../models/meme');
 
 
@@ -9,13 +9,16 @@ module.exports.index = async (req, res) => {
     const memes = await getAllPosts();
     const topCommentMemes = await getTopComments();
     let date = Date.now();
+    const comments=await getLatestComments();
+    console.log(comments);
 
     for (let meme of memes) {
         meme.elapsedTime = transformDate(date - meme.createdDate);
     }
 
 
-    res.render('memes/index', { memes, topCommentMemes });
+
+    res.render('memes/index', { memes, topCommentMemes,comments });
 }
 
 //render view to create new meme page

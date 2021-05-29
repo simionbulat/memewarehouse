@@ -440,9 +440,9 @@ abbr {
   -webkit-box-direction: normal;
       -ms-flex-flow: row nowrap;
           flex-flow: row nowrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -467,5 +467,19 @@ abbr {
   margin: 1.5rem;
   -ms-flex-item-align: start;
       align-self: flex-start;
+}
+
+.comment-title {
+  font-weight: 700;
+  margin-right: 1rem;
+}
+
+.reduce-length-more {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
 /*# sourceMappingURL=style.css.map */

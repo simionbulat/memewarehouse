@@ -163,15 +163,20 @@
                     Latest Comments
                 </div>
                 <div class="text-content">
-                    <% for (let post of topCommentMemes){ %>
+                    <% for (let comment of comments){ %>
                         <!-- comments -->
                         <div class="row-spaced">
-                            <div class="reduce-length">
-                                <%=post.title%>
-
+                            <div class="">
+                                <div class="comment-title">
+                                    <%=comment.author.username%>
+                                </div>
                             </div>
-                            <div>
-                                <%=post.points %>
+                            <div class="reduce-length-more">
+                                <a href="/memes/<%=comment.postedOn %>">
+                                    <%=comment.body %>
+                                </a>
+
+
                             </div>
                         </div>
                         <% } %>

@@ -14,12 +14,16 @@ const commentSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     },
+    createdTime: {
+        type: 'Number'
+    },
+    postedOn: {
+        type: Schema.Types.ObjectId,
+        ref: 'Meme'
+    }
 });
 
 module.exports = mongoose.model("Comment", commentSchema);
 
 
 
-//termina de facut formu de trimis post request sa updatezi punctaju memeului. 
-
-//apoi useru cand da refresh ,primeste punctele 

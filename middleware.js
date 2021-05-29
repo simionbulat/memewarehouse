@@ -70,12 +70,16 @@ module.exports.validateComment = (req, res, next) => {
 module.exports.getTopComments = async () => {
     const foundMeme = await Meme.find().sort({ 'voteScore': -1 }).limit(10);
 
-    // for (let meme of foundMeme) {
-    //     console.log(meme.voteScore);
-    // }
-
     return foundMeme;
 }
+
+module.exports.getLatestComments= async()=>{
+    const foundComments= await Comment.find().sort({'createdTime':-1}).limit(10).populate('author');
+    return foundComments;
+}
+
+
+
 
 module.exports.getAllPosts = async () => {
     return await Meme.find({}).populate({
@@ -89,14 +93,6 @@ module.exports.getDate = () => {
     return Date.now();
 }
 
-module.exports.getPostAge = (time) => {
-    console.log('s-a ajuns aici', time);
-    return time;
-    // var reminderTime = new Date(this.getDate() - time);
-    // var hours = reminderTime.getHours();
-    // var days = hours % 24;
-    // return { hours, days };
-}
 
 module.exports.transformDate = (arg) => {
     let text = ""

@@ -6,8 +6,9 @@ module.exports.createComment = async (req, res) => {
     const meme = await Meme.findById(id);
     const comment = new Comment(req.body.comment);
     comment.author = req.user._id;
-
+    comment.createdTime = Date.now();
     meme.comments.push(comment);
+    comment.postedOn = id;
     await comment.save();
     await meme.save();
     req.flash('success', 'Created new comment!');

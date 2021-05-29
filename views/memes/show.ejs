@@ -1,73 +1,73 @@
 <% layout('layouts/boilerplate')%>
-<div class="main-container " id="meme-index-container">
-    <div class="custom-row dark-background" >
-        <div class="meme-col">
-           <div class="custom-card">
-                        <div class="custom-card-title">
-                            <h5 class="reduce-length">
-                                <a href='/memes/<%=meme._id%>'>
-                                    <%= meme.title%>
-                                </a>
-                            </h5>
-                        </div>
-                        <div class="post-image">
-                            <img class="img-fluid" src="<%=meme.image.url %>" alt="">
-                        </div>
-                        <div class="text-content text-muted" id="post-bottom-text">
-                            <div class="" id="upper-level">
-                                <div class="custom-row">
-                                    <div class="points-value">
-                                        <%= meme.voteScore %> Votes
-                                    </div>
-                                    <div class="comments-number">
-                                        <a href='/memes/<%=meme._id%>'>
-                                            <%= meme.comments.length %> Comments
-                                        </a>
-
-                                    </div>
-
-                                </div>
-                                <div class="created-date">
-
-                                    <abbr class="timeago" id="timeago" title="<%=meme.createdDate %>">
-                                        <%=meme.elapsedTime%>
-                                    </abbr>
-                                </div>
-                            </div>
-                            <div class="" id="lower-level">
-                                <div class="custom-row">
-
-
-                                    <div class="vote">
-                                        <% if (!currentUser){ %>
-                                            <div class="need-to-be-logged-in">
-                                                <h5>Login to vote</h5>
-                                            </div>
-                                            <% } else{ %>
-                                                <form method="POST" class="vote-up" data-id="<%=meme._id %>">
-                                                    <button id="upvote">&uarr;</button>
-                                                </form>
-                                                <form method="POST" class="vote-down" data-id="<%=meme._id %>">
-                                                    <button id="downvote">&#8595;</button>
-                                                </form>
-                                                <% } %>
-                                    </div>
-                                    <div class="author-name">
-                                        by <a href="/users/<%=meme.author.id %> ">
-                                            <%=meme.author.username %>
-                                        </a>
-                                    </div>
-
-                                </div>
-
-                                <div class="social">
-                                    <a class="social-button" id="fb-button" href="#">F Share</a>
-                                    <a class="social-button" id="twitter-button" href="#">Twitter</a>
-                                </div>
-                            </div>
-                        </div>
-                        
+    <div class="main-container " id="meme-index-container">
+        <div class="custom-row dark-background">
+            <div class="meme-col">
+                <div class="custom-card">
+                    <div class="custom-card-title">
+                        <h5 class="reduce-length">
+                            <a href='/memes/<%=meme._id%>'>
+                                <%= meme.title%>
+                            </a>
+                        </h5>
                     </div>
+                    <div class="post-image">
+                        <img class="img-fluid" src="<%=meme.image.url %>" alt="">
+                    </div>
+                    <div class="text-content text-muted" id="post-bottom-text">
+                        <div class="" id="upper-level">
+                            <div class="custom-row">
+                                <div class="points-value">
+                                    <%= meme.voteScore %> Votes
+                                </div>
+                                <div class="comments-number">
+                                    <a href='/memes/<%=meme._id%>'>
+                                        <%= meme.comments.length %> Comments
+                                    </a>
+
+                                </div>
+
+                            </div>
+                            <div class="created-date">
+
+                                <abbr class="timeago" id="timeago" title="<%=meme.createdDate %>">
+                                    <%=meme.elapsedTime%>
+                                </abbr>
+                            </div>
+                        </div>
+                        <div class="" id="lower-level">
+                            <div class="custom-row">
+
+
+                                <div class="vote">
+                                    <% if (!currentUser){ %>
+                                        <div class="need-to-be-logged-in">
+                                            <h5>Login to vote</h5>
+                                        </div>
+                                        <% } else{ %>
+                                            <form method="POST" class="vote-up" data-id="<%=meme._id %>">
+                                                <button id="upvote">&uarr;</button>
+                                            </form>
+                                            <form method="POST" class="vote-down" data-id="<%=meme._id %>">
+                                                <button id="downvote">&#8595;</button>
+                                            </form>
+                                            <% } %>
+                                </div>
+                                <div class="author-name">
+                                    by <a href="/users/<%=meme.author.id %> ">
+                                        <%=meme.author.username %>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                            <div class="social">
+                                <a class="social-button" id="fb-button" href="#">F Share</a>
+                                <a class="social-button" id="twitter-button" href="#">Twitter</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
                 <% if(currentUser && meme.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
                     <div>
 
@@ -103,7 +103,8 @@
                                     </a>
                                     <%= comment.body %>
                                 </p>
-                                <% if(currentUser && meme.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+                                <% if(currentUser && meme.author.id.equals(currentUser._id) || currentUser &&
+                                    currentUser.isAdmin){ %>
                                     <form action="/memes/<%=meme._id%>/comments/<%=comment._id%>?_method=DELETE"
                                         method="POST">
                                         <button class="btn btn-sm btn-danger">Delete</button>
@@ -111,7 +112,7 @@
                                     <% } %>
                             </div>
                         </div>
-                    <% } %>
+                        <% } %>
         </div>
     </div>
-</div>
+    </div>
