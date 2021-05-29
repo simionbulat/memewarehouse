@@ -95,23 +95,23 @@
                 </form>
                 <% }%>
                     <% for(let comment of meme.comments) { %>
-                        <div class="card mb-3 ">
-                            <div class="card-body">
-                                <p class="card-text ">
-                                    <a class="comment-username" href="/users/<%=comment.author.id %> ">
-                                        <%= comment.author.username %>
-                                    </a>
-                                    <%= comment.body %>
-                                </p>
-                                <% if(currentUser && meme.author.id.equals(currentUser._id) || currentUser &&
-                                    currentUser.isAdmin){ %>
-                                    <form action="/memes/<%=meme._id%>/comments/<%=comment._id%>?_method=DELETE"
-                                        method="POST">
-                                        <button class="btn btn-sm btn-danger">Delete</button>
-                                    </form>
-                                    <% } %>
-                            </div>
+
+                        <div class="comment-card">
+                            <p class="card-text ">
+                                <a class="comment-username" href="/users/<%=comment.author.id %> ">
+                                    <%= comment.author.username %>
+                                </a>
+                                <%= comment.body %>
+                            </p>
+                            <% if(currentUser && meme.author.id.equals(currentUser._id) || currentUser &&
+                                currentUser.isAdmin){ %>
+                                <form action="/memes/<%=meme._id%>/comments/<%=comment._id%>?_method=DELETE"
+                                    method="POST">
+                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                                <% } %>
                         </div>
+
                         <% } %>
         </div>
     </div>

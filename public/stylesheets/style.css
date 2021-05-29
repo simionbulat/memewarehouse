@@ -482,4 +482,10 @@ abbr {
   /* number of lines to show */
   -webkit-box-orient: vertical;
 }
+
+.comment-card {
+  background-color: white;
+  width: 300px;
+  margin-bottom: 0px;
+}
 /*# sourceMappingURL=style.css.map */
