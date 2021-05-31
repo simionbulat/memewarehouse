@@ -158,7 +158,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="custom-box content-side-side">
+            <div class="custom-box content-side">
                 <div class="title">
                     Latest Comments
                 </div>
@@ -181,6 +181,23 @@
                         </div>
                         <% } %>
                 </div>
+            </div>
+            <div class="custom-box content-side">
+                <div>
+                    Most reputable users!
+                </div>
+                <% for (let user of topUsers){ %>
+                    <div class="row-spaced comment-card">
+
+                        <div class=" user-title">
+                            <%= user.username%>
+                        </div>
+
+                        <div class="reduce-length-more user-reputation">
+                            <%= user.reputationPoints %>
+                        </div>
+                    </div>
+                    <% } %>
             </div>
 
         </div>

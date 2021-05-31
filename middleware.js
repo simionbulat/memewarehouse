@@ -2,6 +2,7 @@ const { memeSchema, commentSchema } = require('./schemas.js');
 const ExpressError = require('./utils/ExpressError');
 const Meme = require('./models/meme');
 const Comment = require('./models/comment');
+const User = require('./models/user');
 
 
 module.exports.isLoggedIn = (req, res, next) => {
@@ -73,8 +74,8 @@ module.exports.getTopComments = async () => {
     return foundMeme;
 }
 
-module.exports.getLatestComments= async()=>{
-    const foundComments= await Comment.find().sort({'createdTime':-1}).limit(10).populate('author');
+module.exports.getLatestComments = async () => {
+    const foundComments = await Comment.find().sort({ 'createdTime': -1 }).limit(10).populate('author');
     return foundComments;
 }
 
@@ -113,4 +114,18 @@ module.exports.transformDate = (arg) => {
         text = Math.floor(seconds) + ' Seconds ago'
     }
     return text;
+}
+
+module.exports.getTopUsers = async () => {
+    return User.find().sort({ 'reputationPoints': -1 }).limit(10);
+
+}
+
+module.exports.getReputationPoints = async (userId) => {
+    const postToGetPointsFrom = await Meme.find({ 'author.id': userId });
+    let totalPoints = 0;
+    for (let post of postToGetPointsFrom) {
+        totalPoints += post.voteScore;
+    }
+    return totalPoints;
 }
