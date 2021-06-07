@@ -9,7 +9,6 @@ module.exports.voteUp = async (req, res) => {
     try {
         const newMeme = await Meme.findById(id);
         const user = await User.findById(newMeme.author.id);
-        console.log('userugasit este', user);
         newMeme.upVotes.push(req.user._id);
         newMeme.voteScore++;
         user.reputationPoints++;
@@ -45,6 +44,7 @@ module.exports.voteDown = async (req, res) => {
 
         await newMeme.save();
         res.status(200);
+
     } catch (e) {
         console.log('------------Error downvoting ------', e);
     }
